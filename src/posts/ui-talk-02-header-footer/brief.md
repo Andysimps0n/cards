@@ -4,13 +4,29 @@
 > 편 번호는 커버 제목의 **`2탄`** 한 곳에만 나와요 (`cards/Cover.jsx`, Andy 확정). 시리즈 공통 규칙은 `document/04-series-rules.md`가 이 문서보다 우선이에요 (말투 규칙 포함).
 
 이 문서는 Cursor가 그대로 따라 만들 수 있게 쓴 명세예요. **문구는 확정본**이라 바꾸지 말고, 넘치면 아래 "넘칠 때" 규칙대로만 줄여요.
-구현 방식은 QUEST #01 리액트 카드(`src/posts/ui-talk-01/`)를 기준으로 해요. 먼저 `document/00-README.md`, `document/03-UI.md`, 그리고 `src/posts/ui-talk-01/` 전체를 읽고 시작하세요.
+구현 방식은 #01 리액트 카드(`src/posts/ui-talk-01/`)를 기준으로 해요. 먼저 `document/00-README.md`, `document/03-UI.md`, `document/04-series-rules.md`, 그리고 `src/posts/ui-talk-01/` 전체를 읽고 시작하세요.
+
+> ## ⚠️ 2026-10-04 수정: 이 편은 이미 구현돼 있어요 → "새로 만들기"가 아니라 "고치기"
+> `src/posts/ui-talk-02-header-footer/`에 9장이 이미 있고 `App.jsx`·`main.jsx`·`export.mjs` 등록도 끝났어요(2-3, 2-4는 다시 할 필요 없음). 아래만 바꾸면 돼요.
+>
+> | # | 바꿀 것 | 자세한 명세 |
+> |---|---|---|
+> | 1 | 03장 `PageMapCard`(지도 펼치기, 02장과 겹침) **삭제** → 순서 변경: 03 Header(`구역 ①`) · 04 Header 해부(`구역 ②`) · **05 Breadcrumb(`구역 ③`, 새 카드)** · 06 Footer(`구역 ④`) · 07 Footer 해부(`구역 ⑤`). 각 카드의 `page`와 `stage`를 함께 고쳐요 | 2-2, 5장 03~07 |
+> | 2 | `SectionCard`에 `before`/`after` props 추가 (#01 TermCard의 "잘못된 설명 / 용어를 알고 난 후" 박스) | 3-1 |
+> | 3 | 새 목업 `BreadcrumbMock` 추가, `PageMap` 목업·`.pm-pagemap` CSS·`PageMapCard.jsx` 삭제 | 4-2 |
+> | 4 | 01 커버 "오늘의 내용" 목록에 Breadcrumb 줄 추가 (Andy가 바꾼 목록 구조는 유지) | 5장 01 |
+> | 5 | 02 채팅: 제목을 `이런 상황이 답답하시죠,,`로, 빠진 반복 표시 `이걸 여러 번 반복...` 다시 넣기, 첫 말 끝 마침표 빼기 | 5장 02 |
+> | 6 | 08 정리표: `햄버거 메뉴` 행 → `Breadcrumb` 행 | 5장 08 |
+> | 7 | 09 엔딩: 칩 `햄버거 메뉴` → `Breadcrumb`, 다음 편 `Hero Section 편` → `입력하는 UI 편` + 설명 2줄 | 5장 09 |
+> | 8 | `caption.md`를 7장 초안으로 통째로 교체 (Breadcrumb 줄·프롬프트 한 쌍, 다음 편 줄, 채팅 첫 말 인용) | 7장 |
+>
+> 형광펜은 01 "UI 용어집", 02 "Header, Footer", 08 "이 표" 3곳으로 줄어요 (예전 03장 "머리와 발"이 빠짐).
 
 ---
 
 ## #01에서 반영한 수정사항 (= 확정된 시리즈 규칙)
 
-QUEST #01은 처음에 HTML 템플릿(`templates/*.html` + `build.py`)으로 만들었다가, React로 옮기면서 Andy가 아래처럼 고쳤어요. 이 편에는 모두 반영했어요. 그중 **9·10·12·13·15~18번은 Andy가 앞으로 「AI한테 이렇게 말해」 시리즈 전체에 적용하는 규칙으로 확정했어요 (2026-10-03, "확정 규칙" 표시).** 나머지는 #01 코드에 맞춘 것("#01 반영" 표시)이고. (비교 기준: 박스의 #01 원본 `build.py`·템플릿 vs Mac의 `src/posts/ui-talk-01/` 현재 코드, `document/03-UI.md`)
+#01은 처음에 HTML 템플릿(`templates/*.html` + `build.py`)으로 만들었다가, React로 옮기면서 Andy가 아래처럼 고쳤어요. 이 편에는 모두 반영했어요. 그중 **9·10·12·13·15~18번은 Andy가 앞으로 「AI한테 이렇게 말해」 시리즈 전체에 적용하는 규칙으로 확정했어요 (2026-10-03, "확정 규칙" 표시).** 나머지는 #01 코드에 맞춘 것("#01 반영" 표시)이고. (비교 기준: 박스의 #01 원본 `build.py`·템플릿 vs Mac의 `src/posts/ui-talk-01/` 현재 코드, `document/03-UI.md`)
 
 | # | #01에서 바뀐 점 (원본 → 지금) | 상태 · 이 편 반영 위치 |
 |---|---|---|
@@ -59,9 +75,9 @@ QUEST #01은 처음에 HTML 템플릿(`templates/*.html` + `build.py`)으로 만
 |---|---|---|---|---|
 | 01 | 커버 | `Cover.jsx` | `ui-talk-01/cards/Cover.jsx` 복사 후 문구 교체 | — |
 | 02 | 내 경험 (문제 제기) | `Chat.jsx` + 새 목업 `WrongNav` | `ui-talk-01/cards/Chat.jsx` | — |
-| 03 | 구역 ① 지도 펼치기: 한 화면에서 위치 보기 | `PageMapCard.jsx` → **`SectionCard.jsx` (새로 만듦)** + 목업 `PageMap` | `TermCard.jsx` 구조 참고 | wide |
-| 04 | 구역 ② Header가 하는 일 | `HeaderCard.jsx` → `SectionCard` + 목업 `HeaderMock` | 〃 | side |
-| 05 | 구역 ③ Header 해부하기 | `HeaderPartsCard.jsx` → `SectionCard` + 목업 `HeaderParts` | 〃 | wide |
+| 03 | 구역 ① Header가 하는 일 | `HeaderCard.jsx` → **`SectionCard.jsx`** + 목업 `HeaderMock` | `TermCard.jsx` 구조 참고 | side |
+| 04 | 구역 ② Header 해부하기 | `HeaderPartsCard.jsx` → `SectionCard` + 목업 `HeaderParts` | 〃 | wide |
+| 05 | 구역 ③ Breadcrumb (용어 카드, before/after 있음) | `BreadcrumbCard.jsx` (새로 만듦) → `SectionCard` + 목업 `BreadcrumbMock` | #01 `TermCard.jsx` | side |
 | 06 | 구역 ④ Footer가 하는 일 | `FooterCard.jsx` → `SectionCard` + 목업 `FooterMock` | 〃 | side |
 | 07 | 구역 ⑤ Footer 해부하기 | `FooterPartsCard.jsx` → `SectionCard` + 목업 `FooterParts` | 〃 | wide |
 | 08 | 한 눈에 정리 (정리표) | `Summary.jsx` | `ui-talk-01/cards/Compare.jsx` 복사 | — |
@@ -76,11 +92,11 @@ QUEST #01은 처음에 HTML 템플릿(`templates/*.html` + `build.py`)으로 만
 | `templates/term-mock.html` 복사해서 만드는 `section.html` | `cards/SectionCard.jsx` (#01 `TermCard.jsx`처럼 "여러 장이 같이 쓰는 레이아웃" 컴포넌트) |
 | 새 `templates/say.html` (before/after 두 쌍) | **없앰.** 08장은 #01 `Compare.jsx` 구조의 정리표 `cards/Summary.jsx`로 바뀜 |
 | `templates/ending.html` | `cards/Ending.jsx` (#01 `Ending.jsx` 복사) |
-| `assets/mock.js`의 새 키 6개 | `mocks.jsx`의 컴포넌트 6개 (`WrongNav`, `PageMap`, `HeaderMock`, `HeaderParts`, `FooterMock`, `FooterParts`). 공용 `src/ui/Mock.jsx`는 수정하지 않음 |
+| `assets/mock.js`의 새 키 6개 | `mocks.jsx`의 컴포넌트 6개 (`WrongNav`, `BreadcrumbMock`, `HeaderMock`, `HeaderParts`, `FooterMock`, `FooterParts`). 공용 `src/ui/Mock.jsx`는 수정하지 않음 |
 | `assets/mock.css` 맨 아래 `pm-` 규칙 | 이 편의 `cards.css` 안 "mocks" 구역에 `pm-` 규칙 (공용 `src/styles/mock.css`는 수정하지 않음) |
 | `crayon.js`의 `Crayon.icon("magnifier")`, `data-icon="arrow"` | `src/ui/Icon.jsx`의 `<Icon name="magnifier" />`, `<Icon name="arrow" />` (크기는 감싸는 `div`의 width/height로) |
 | `#wax`, `#wax-stroke`, `#rough` 필터 (crayon.js가 주입) | `src/ui/Filters.jsx` (App에 이미 한 번 들어 있음, `url(#wax)` 그대로 사용) |
-| `data-field="pg"`, `@handle` 푸터 | `<Post page="03">`가 자동으로 계정명 · `03 / 09` 푸터를 그림 (계정명 `@crayon.chair`는 Andy가 `src/ui/Post.jsx`에서 직접 설정) |
+| `data-field="pg"`, 계정명 푸터 | `<Post page="03">`가 자동으로 계정명 · `03 / 09` 푸터를 그림 (계정명은 Andy가 `src/ui/Post.jsx`에서 직접 설정·관리) |
 | 배지 + `QUEST #??` + 시리즈명 머리 | `<div className="card-head"><QuestTag series="talk" showType={false} /></div>` (03-UI 규칙에 따라 `.quest-tag`는 CSS로 숨겨짐, 번호 없음) |
 | 오른쪽 위 진행 루트 (`step 1/5` 등) | **없음.** 03-UI 규칙 "진행 점(`route-progress`)은 넣지 않는다"를 따름 |
 | `build.py` (문구·파라미터 묶음), `HL()`, `B()`, `pt()`, `leg()` | 각 카드 `.jsx` 파일 안 JSX 글자. `HL("x")` → `<span className="hl">x</span>`, `B("x")` → `<b>x</b>`, `<br>` → `<br />`, `pt/leg` → `SectionCard`의 `items` 배열 |
@@ -103,9 +119,9 @@ QUEST #01은 처음에 HTML 템플릿(`templates/*.html` + `build.py`)으로 만
    - 예외로 그대로 써도 되는 공용 클래스: `base.css`의 `.display`, `.hand`, `.hl`, `.chip`, `.card`, `.card.warm`, `.layer`, `.footer`, `.quest-tag`, 그리고 `mock.css`의 `.phone`, `.scr`, `.notch`, `.app` 하위(`.hero`, `.ln`, `.cards`), `.burger`, `.ping`, `.card-head`
 3. 새 색·폰트·크기 값을 만들지 말고 `var(--…)` 토큰만 써요. px 값은 이 문서에 적힌 값(#01 카드에서 가져온 값)을 써요.
 4. **제목 3줄 이하**, 글자 넘침·잘림·겹침 없음. 본문 최소 28px, Gaegu 최소 32px (예외: 목업 안의 아주 작은 라벨은 #01 Toast·Tooltip 목업처럼 20~22px, 02장 AI 말풍선은 #01 채팅처럼 28px 허용).
-5. 내용이 **y=1230px 아래로 내려가면 안 돼요** (`<Post>` 푸터 `@crayon.chair · 01 / 09`가 바닥 52px 위에 있어요). 좌우 88px 여백 유지.
+5. 내용이 **y=1230px 아래로 내려가면 안 돼요** (`<Post>` 푸터 `계정명 · 01 / 09`가 바닥 52px 위에 있어요). 좌우 88px 여백 유지.
 6. **형광펜(`className="hl"`)은 한 장에 한 단어(구절)만.** 아래 명세에 적힌 곳에만 써요.
-7. 계정명은 `@crayon.chair`예요. `src/ui/Post.jsx`가 자동으로 넣고 Andy가 직접 관리하니, 이 편 코드에서는 계정명을 쓰거나 바꾸지 않아요.
+7. 계정명은 `src/ui/Post.jsx`가 자동으로 넣고 Andy가 직접 관리해요. 이 편 코드와 문서에는 계정명을 적거나 바꾸지 않아요.
 7-1. **말투**: 모든 카드 글자는 공부 노트 말투예요. 퀘스트·주문(서)·탐험·모험·지점·보물·NEXT QUEST 같은 모험 표현은 쓰지 않아요 (`document/04-series-rules.md` "말투 규칙"). 크레파스·지도풍 장식은 그림으로만 남아도 돼요.
 8. 페이지 번호는 `<Post page="01">` … `page="09"`로 넘겨요 (`total`은 기본값 `"09"`).
 9. 크레파스 질감(`url(#wax)`, `url(#wax-stroke)`, `url(#rough)`)은 **테두리·면·선에만** (`::before`/`::after` 레이어 또는 SVG). 글자가 든 요소에는 절대 `filter`를 걸지 않아요.
@@ -138,9 +154,9 @@ src/posts/ui-talk-02-header-footer/
    ├─ Cover.jsx
    ├─ Chat.jsx
    ├─ SectionCard.jsx  # 03~07이 같이 쓰는 레이아웃 (#01 TermCard 역할)
-   ├─ PageMapCard.jsx      # 03
-   ├─ HeaderCard.jsx       # 04
-   ├─ HeaderPartsCard.jsx  # 05
+   ├─ HeaderCard.jsx       # 03
+   ├─ HeaderPartsCard.jsx  # 04
+   ├─ BreadcrumbCard.jsx   # 05 (2026-10-04 새로 추가, PageMapCard.jsx는 삭제)
    ├─ FooterCard.jsx       # 06
    ├─ FooterPartsCard.jsx  # 07
    ├─ Summary.jsx          # 08 (정리표, #01 Compare.jsx 구조)
@@ -155,9 +171,9 @@ src/posts/ui-talk-02-header-footer/
 // cards.jsx
 import { Cover } from "./cards/Cover.jsx";
 import { Chat } from "./cards/Chat.jsx";
-import { PageMapCard } from "./cards/PageMapCard.jsx";
 import { HeaderCard } from "./cards/HeaderCard.jsx";
 import { HeaderPartsCard } from "./cards/HeaderPartsCard.jsx";
+import { BreadcrumbCard } from "./cards/BreadcrumbCard.jsx";
 import { FooterCard } from "./cards/FooterCard.jsx";
 import { FooterPartsCard } from "./cards/FooterPartsCard.jsx";
 import { Summary } from "./cards/Summary.jsx";
@@ -167,9 +183,9 @@ import { Ending } from "./cards/Ending.jsx";
 export const cards = [
   { id: "01", label: "cover", Card: Cover },
   { id: "02", label: "chat", Card: Chat },
-  { id: "03", label: "지도 펼치기", Card: PageMapCard },
-  { id: "04", label: "Header", Card: HeaderCard },
-  { id: "05", label: "Header 해부", Card: HeaderPartsCard },
+  { id: "03", label: "Header", Card: HeaderCard },
+  { id: "04", label: "Header 해부", Card: HeaderPartsCard },
+  { id: "05", label: "Breadcrumb", Card: BreadcrumbCard },
   { id: "06", label: "Footer", Card: FooterCard },
   { id: "07", label: "Footer 해부", Card: FooterPartsCard },
   { id: "08", label: "summary", Card: Summary },
@@ -236,9 +252,9 @@ const url = `${origin}/?post=${post}&card=${id}`;
 
 ### 3-1. `cards/SectionCard.jsx` (구역 카드, 03~07)
 
-#01 `TermCard.jsx`처럼 레이아웃만 갖고, 문구는 각 카드 파일에서 props로 넘겨요. TermCard의 `when`(언제 쓰는지 한 문장)은 그대로 두고, `feats`, before/after 대신 **항목 목록(items)**과 **팁 카드(tip)**가 들어가요.
+#01 `TermCard.jsx`처럼 레이아웃만 갖고, 문구는 각 카드 파일에서 props로 넘겨요. TermCard의 `when`(언제 쓰는지 한 문장)은 그대로 두고, `feats` 대신 **항목 목록(items)**과 **팁 카드(tip)**가 들어가요. 2026-10-04부터 Breadcrumb 장(05)을 위해 #01 TermCard의 **before/after 박스**(`before`, `after`)도 선택으로 받아요.
 
-**props**: `name, page, layout("side"|"wide"), mock(JSX), stage, term, pron, mean, when, items([{ n, t, d }]), tipLabel, tip, fn`
+**props**: `name, page, layout("side"|"wide"), mock(JSX), stage, term, pron, mean, when, items([{ n, t, d }]), before, after, tipLabel, tip, fn`
 - 빈 값(`undefined`나 빈 배열)인 부분은 **렌더링하지 않아요** (옛 템플릿의 `:empty` 숨김 대신 조건부 렌더링)
 
 **구조 (위→아래)**
@@ -265,6 +281,25 @@ const url = `${origin}/?post=${post}&card=${id}`;
         ))}
       </ul>
     )}
+    {(before || after) && (
+      <div className="hf-talk">
+        <div className="hf-before">
+          <div className="hf-lab">
+            <span className="hf-mark"><Icon name="x" color="var(--ink-soft)" stroke={10} /></span>
+            잘못된 설명
+          </div>
+          <p>{before}</p>
+        </div>
+        <div className="hf-down"><Icon name="arrow" color="var(--p-deep)" stroke={8} /></div>
+        <div className="card hf-after">
+          <div className="hf-lab">
+            <span className="hf-mark"><Icon name="star" color="var(--sun-deep)" stroke={8} /></span>
+            용어를 알고 난 후
+          </div>
+          <p>{after}</p>
+        </div>
+      </div>
+    )}
   </div>
   {tip && (
     <div className="card hf-tip">
@@ -277,6 +312,7 @@ const url = `${origin}/?post=${post}&card=${id}`;
 ```
 
 - 진행 루트는 넣지 않아요 (03-UI 규칙). `.card-head`는 #01 TermCard와 똑같이 둬요 (배지는 CSS로 숨겨짐).
+- `before`/`after`를 쓰려면 `SectionCard.jsx` 맨 위에 `import { Icon } from "../../../ui/Icon.jsx";`를 추가해요. 박스 라벨 문구는 시리즈 규칙대로 `잘못된 설명` / `용어를 알고 난 후`.
 
 **CSS (`cards.css`, 값은 #01 `term-*` / `chat-punch`에서 가져옴)**
 
@@ -302,6 +338,7 @@ const url = `${origin}/?post=${post}&card=${id}`;
 | `.hf-tip-text` | `font-family: var(--f-display); font-size: 44px; line-height: 1.3;` / 안의 `b`는 `color: var(--p-deep); font-weight:400;` |
 | `.hf-tip-desc` | 팁 안 긴 설명용: `font-family: var(--f-body); font-weight:600; font-size:32px;` (옛 브리프의 인라인 `<span style=…>` 대신) |
 | `.hf-fn` | `margin-top: 14px; font-size: 28px; line-height: 1.5; color: var(--ink-soft); font-weight: 500;` |
+| `.hf-talk`, `.hf-before`, `.hf-down`, `.hf-after`, `.hf-lab`, `.hf-mark` (+ 각 `p`, `::before`, `.hf-after b`) | #01 `src/posts/ui-talk-01/cards.css`의 `.term-talk`, `.term-before`, `.term-down`, `.term-after`, `.term-lab`, `.term-mark` 블록을 **값 그대로** 복사해서 이름만 `hf-`로 (2026-10-04 추가, 05장 전용) |
 
 ### 3-2. `cards/Summary.jsx` (한 눈에 정리: 정리표, 08)
 
@@ -351,7 +388,7 @@ export function Summary() {
 ## 4. 새 목업 명세 (`mocks.jsx` + `cards.css`의 mocks 구역)
 
 공통 원칙: #01 목업(`src/ui/Mock.jsx` + `src/styles/mock.css`)처럼 **테두리만 크레파스**(`filter:url(#wax-stroke)`를 `::before`/`::after`에), 안쪽은 선명한 면과 둥근 막대로 그려요. 글 대신 막대(`pm-ln`)를 쓰고, 꼭 필요한 곳에만 짧은 실제 글자를 써요.
-- 6개 모두 `mocks.jsx`에서 `export function WrongNav() {…}` 식으로 내보내고, 카드 파일에서 `mock={<PageMap />}`처럼 넘겨요.
+- 6개 모두 `mocks.jsx`에서 `export function WrongNav() {…}` 식으로 내보내고, 카드 파일에서 `mock={<HeaderMock />}`처럼 넘겨요.
 - 공용 `Mock.jsx`의 `Phone`은 export 되지 않고 기본 앱 화면이 고정이라 쓰지 않아요. 폰이 필요한 `WrongNav`는 같은 마크업(`.phone > .scr > .app` + `.notch`)을 직접 써요.
 - 아이콘은 `import { Icon } from "../../ui/Icon.jsx"` 후 크기를 정한 `div`로 감싸요: `<div style={{ width: 30, height: 30 }}><Icon name="magnifier" color="var(--ink)" stroke={9} /></div>`
 - 손그림 점선 루트·화살표 같은 장식은 #01 `Cover.jsx`/`Ending.jsx`처럼 인라인 SVG `<path … filter="url(#wax-stroke)" />`로 그려요.
@@ -385,21 +422,20 @@ export function Summary() {
   5. 맨 아래가 아니라 **카드 바로 밑에** 회사 정보 막대 2줄(`.ln.s` 두 개, `var(--ink-faint)`)이 떠 있고, 그 아래는 빈 공간
 - 축소된 크기에서도 "가운데 핑크 띠 + ?"가 보이면 OK
 
-### 4-2. `PageMap` (03장, wide)
+### 4-2. `BreadcrumbMock` (05장, side) · `PageMap` 대신 새로 만듦
 
-- 크기: `.pm-site` **520 × 600**, 목업 바깥 감싸개 `.pm-pagemap { position:relative; width:904px; height:600px; display:flex; justify-content:flex-start; padding-left:60px; }` 안에서 **왼쪽에서 60px** 들어간 위치 (오른쪽에 라벨 자리를 남겨요)
+> 예전 03장용 `PageMap` 목업과 `.pm-pagemap` CSS는 더 이상 쓰지 않아요. `mocks.jsx`와 `cards.css`에서 지워요.
+
+- 크기: `.pm-site` **340 × 500** (`HeaderMock`·`FooterMock`과 같음)
 - `.pm-win` 안 (위→아래):
-  1. `.pm-top` (44px)
-  2. **Header 구역** `.pm-zone` 높이 88px, `padding: 0 26px; display:flex; align-items:center; gap:18px;` → `.pm-logo` / flex 1 빈칸 / `.pm-wbar` 46px ×3 (gap 14px) / 흰 원 26px
-  3. **본문** `.pm-dim`, `padding: 22px 26px; display:flex; flex-direction:column; gap:14px; flex:1;` → peach 블록 높이 130px(radius 16, `var(--peach)`) / `.pm-ln.w80` / `.pm-ln.w60` / 3칸 카드 그리드(높이 84px, `--paper-warm` + 3px `--paper-line` 테두리, radius 14) / `.pm-ln` / `.pm-ln.w60`
-  4. **Footer 구역** `.pm-zone` 높이 120px, `padding: 22px 26px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;` → 칸마다 `.pm-wbar` 3개 (너비 80% / 60% / 70%, 세로 gap 12px)
-- 창 오른쪽 바깥 라벨 (`.pm-note`, 창 오른쪽 끝 + 36px):
-  - Header 띠 높이 가운데: `← Header` (40px, `--p-deep`) + 다음 줄 `머리` (34px, `--ink-soft`)
-  - 본문 가운데: `← 본문` (34px, `--ink-faint`) + 다음 줄 `페이지마다 달라요` (32px, `--ink-faint`)
-  - Footer 띠 높이 가운데: `← Footer` (40px, `--p-deep`) + 다음 줄 `발` (34px, `--ink-soft`)
-- 장식: 라벨 사이를 잇는 세로 점선 루트 (인라인 SVG, `stroke="var(--p-deep)"`, `strokeOpacity=".55"`, `strokeDasharray="3 22"`, `filter="url(#wax-stroke)"`)를 창 오른쪽 18px 지점에 Header 띠 → Footer 띠까지 하나
+  1. `.pm-top`
+  2. **Header** (흐리게 `.pm-dim`): 높이 64px, `var(--paper-warm)` 바탕 + 아래 3px `var(--paper-line)`, `padding: 0 20px; display:flex; align-items:center; gap:12px;` → 로고 원 26px `var(--p)` + `.pm-bar` 50px / 빈칸(flex 1) / `.pm-ln` 36px ×2
+  3. **Breadcrumb 줄** `.pm-zone` 높이 56px, `padding: 0 18px; display:flex; align-items:center; gap:8px;` → 실제 글자 `홈` `>` `상의` `>` `니트` (Pretendard 22px. `홈`·`상의`는 600 `var(--ink)` + 밑줄 2px(링크라는 표시), `>`는 `var(--p-deep)`, 마지막 `니트`는 800 `var(--ink)`이고 밑줄 없음 = 지금 페이지)
+  4. **본문** `.pm-dim`, `padding: 20px; display:flex; flex-direction:column; gap:14px;` → 상품 사진 블록 높이 170px(radius 16, `var(--peach)`) / `.pm-bar` 120px (상품명) / `.pm-ln.w60` / 버튼 막대 44px pill `var(--paper-line)`
+- 선택: 창 아래 바깥에 `.pm-note` 32px `지금 여기!` (`--p-deep`, `rotate(-6deg)`) + `니트`를 향한 짧은 손그림 화살표. `.hf-mockcol` 380px 안에 안 들어가면 생략
+- `>` 글자는 JSX에서 `{">"}`로 써요
 
-### 4-3. `HeaderMock` (04장, side)
+### 4-3. `HeaderMock` (03장, side)
 
 - 크기: `.pm-site` **340 × 500**
 - `.pm-win` 안:
@@ -411,7 +447,7 @@ export function Summary() {
 - 그 옆 창 바깥 아래쪽으로 `.pm-note` 32px `누르면 홈!` (`--p-deep`, 살짝 `rotate(-6deg)`), 로고 쪽을 가리키는 짧은 손그림 화살표(`<Icon name="arrow">` 56px, 뒤집어서 왼쪽 위를 향하게)
   - 라벨이 창 밖으로 나가면 `.hf-mockcol` 380px 안에 들어오게 창 **안쪽** 본문 위에 올려도 돼요 (흰 바탕 둥근 말풍선 없이 글자만)
 
-### 4-4. `HeaderParts` (05장, wide)
+### 4-4. `HeaderParts` (04장, wide)
 
 감싸개 `.pm-parts { display:flex; flex-direction:column; align-items:flex-start; width:904px; }` 안을 세로로 쌓아요.
 
@@ -468,85 +504,65 @@ export function Summary() {
 > 표기: 문구 안 `HL("x")`는 `<span className="hl">x</span>`, `B("x")`는 `<b>x</b>`, `<br>`은 `<br />`로 써요. 줄바꿈 위치까지 확정이에요.
 > 모든 카드는 `<Post name="…" pillar="ui" page="NN">`으로 감싸요.
 
-### 01 · 커버 (`cards/Cover.jsx`, #01 `Cover.jsx` 복사)
+### 01 · 커버 (`cards/Cover.jsx`, 지금 구현 유지 + 목록 한 줄 추가)
 
 | 자리 | 값 |
 |---|---|
 | `h1.display.hf-cover-title` | `AI가 알아먹는<br>{HL("UI 용어집")} 2탄` (#01 `AI가 알아먹는<br /><span className="hl">UI 용어집</span> 1탄`과 같은 구조) |
-| `p.hf-cover-sub` | `AI한테 설명하다 지친<br>나를 위한 Header · Footer` (#01 부제 `AI한테 설명하다 지친<br />나를 위한 UI 용어 5개`와 짝) |
+| 부제 `div.hf-cover-sub` | Andy가 구현에서 바꾼 **"오늘의 내용" 목록**을 유지해요: `p.hand.hf-cover-agenda-label` `오늘의 내용` + `ul.hf-cover-agenda` 3줄 (아래) |
 | (나머지) | blob, 점선 루트, X 표시, 별 2개, `card-head`(QuestTag + 나침반)는 #01 `Cover.jsx` 그대로 |
 
-- 클래스: #01 `cover-*` 블록을 복사해서 `hf-cover-*`로 이름만 바꿔요. 크기도 #01 그대로 (`.hf-cover-title { font-size: 112px; line-height: 1.24; }`, 부제 38px)
-- 03-UI 규칙대로 제목과 부제는 `.hf-cover-copy`(= #01 `.cover-copy`)로 묶어 세로 가운데에 둬요
-- 형광펜: **"UI 용어집"** (#01과 같은 자리)
-- 커버 규칙 (시리즈 확정 규칙, 2026-10-03): 제목은 시리즈 제목형 `AI가 알아먹는 UI 용어집 N탄`, 부제에 이번 편 주제를 넣어요. (예전 규칙 "이름을 모르는 사람이 AI한테 쳤을 법한 질문형 문장"은 폐기. 옛 질문형 제목 `맨 위에 로고랑 메뉴 있는 그 줄, 이름이 뭐더라?`는 캡션 첫 줄에만 남아요)
-- 옛 브리프의 `kicker`(`구역 편 · Header · Footer`)와 `note`(`보물: 머리와 발의 이름`)는 **#01 React 커버에 자리가 없어서 이번에도 넣지 않아요**. "밀어서 퀘스트 시작 →"도 #01 React 커버처럼 없음 (시리즈 규칙)
-- 완료 기준
-  - 제목 2줄, 부제 2줄. #01 커버와 나란히 놓았을 때 제목·부제 위치와 크기가 같음 ("1탄" ↔ "2탄"만 다름)
-  - 부제가 점선 루트·X 표시와 겹치지 않음
+`ul.hf-cover-agenda` 항목 (위→아래, 끝의 `(?)`까지 그대로):
+1. `맨 위에 로고랑 메뉴 버튼 있는 그 줄 (?)` (이미 있음)
+2. `메뉴 밑에 홈 > 상의 > 니트 같은 줄 (?)` (**새로 추가**, Breadcrumb. `>`는 `{">"}`로)
+3. `맨 밑에 회사 정보 적힌 데 (?)` (이미 있음, 3번째로 이동)
 
-### 02 · 내 경험 (`cards/Chat.jsx`, #01 `Chat.jsx` 복사)
+- 순서는 화면 위→아래(Header → Breadcrumb → Footer)이자 03~07장 순서예요
+- 시리즈 규칙 "주제는 부제에": 이 목록이 이번 편 주제를 설명형으로 보여줘서 부제 역할을 해요. 이름은 일부러 안 쓰고 `(?)`로 궁금하게 둬요
+- 크기는 지금 `cards.css` 값 그대로 (`.hf-cover-agenda li` 40px). 3줄 중 하나라도 2줄로 넘어가면 `li`만 36px로
+- 03-UI 규칙대로 제목과 부제는 `.hf-cover-copy`로 묶어 세로 가운데에 둬요
+- 형광펜: **"UI 용어집"** (#01과 같은 자리)
+- 커버 규칙 (시리즈 확정 규칙, 2026-10-03): 제목은 시리즈 제목형 `AI가 알아먹는 UI 용어집 N탄`. 키커, 메모, "밀어서 …"는 넣지 않아요
+- 완료 기준
+  - 제목 2줄, 목록 3줄(각 1줄)
+  - 목록이 점선 루트·X 표시와 겹치지 않음, y=1230 위
+
+### 02 · 내 경험 (`cards/Chat.jsx`, 지금 구현을 시리즈 규칙에 맞게 고치기)
 
 | 자리 | 값 |
 |---|---|
 | 목업 | AI 말풍선 안 `<div className="hf-chat-mini"><WrongNav /></div>` |
-| 제목 (`h1.display.hf-chat-title`) | `이런 상황이 답답하시죠,,` (#01 수정 반영. 원래 기본값 `이름을 몰라서 생긴 일`) |
-| 나 1 (`me1`) | `"맨 위에 로고랑 메뉴 버튼 있는<br>그 줄 만들어줘. 아, 맨 밑에<br>회사 정보 적힌 데도"` |
-| AI 1 (`ai1`) | `(엉뚱한 위치에<br>메뉴를 만들어 옴)` |
-| 나 2 (`me2`) | `"위에 쭉 붙어 있는 메뉴 줄이랑,<br>맨 밑에 늘 깔리는 정보 칸 말이야"` |
-| AI 2 (`ai2`) | `(회사 정보를<br>팝업으로 띄워 옴)` / 목업: 공용 `<Mock kind="modal" />` 재사용 (`<div className="hf-chat-mini"><Mock kind="modal" /></div>`, `src/ui/Mock.jsx` import) |
-| 반복 (`loop`) | `이걸 여러 번 반복...` (#01의 반복 화살표 SVG 그대로) |
-| 나 3 (`me3`, 마지막) | `"아니 그게 아니라,,"` (#01과 같음) |
-| 결론 카드 (`punch`) | `{HL("Header, Footer")}라고 하면<br>바로 알아들어요` |
+| 제목 (`h1.display.hf-chat-title`) | `이런 상황이 답답하시죠,,` (**지금 구현은 `이런적이 있었나요?` → 시리즈 규칙대로 되돌려요**) |
+| 나 1 | `맨 위에 로고랑 메뉴 버튼 있는<br>그 줄 만들어줘` (Andy가 구현에서 줄인 문구 유지, 끝의 마침표는 빼요. 캡션 인용과 같은 문장) |
+| AI 1 | `(엉뚱한 위치에<br>메뉴를 만들어 옴)` |
+| 나 2 | `위에 쭉 붙어 있는 메뉴 줄이랑,<br>맨 밑에 늘 깔리는 정보 칸 말이야` |
+| AI 2 | `(회사 정보를<br>팝업으로 띄워 옴)` / 목업: 공용 `<Mock kind="modal" />` (`<div className="hf-chat-mini"><Mock kind="modal" /></div>`) |
+| 반복 | `이걸 여러 번 반복...` (**지금 구현에 빠져 있어요. 꼭 넣어요.** #01 `Chat.jsx`의 `chat-loop` 마크업(반복 화살표 SVG + 글자)과 #01 `cards.css`의 `.chat-loop` 규칙을 `hf-chat-loop`으로 복사) |
+| 나 3 (마지막) | `아니 그게 아니라,,` |
+| 결론 카드 | `{HL("Header, Footer")}라고 하면<br>바로 알아들어요` |
 
-- 말풍선 순서 (시리즈 확정 규칙, #01과 같은 구조): 나 1 → AI 1(`WrongNav`) → 나 2 → AI 2(`Mock kind="modal"`) → 반복 → 나 3 `"아니 그게 아니라,,"`
-- 이 편은 나 1이 3줄이라 #01보다 한 줄 길어요. y=1230을 넘으면 문구는 그대로 두고 `.hf-chat-thread`의 gap을 10→6px, 그다음 미니 목업 축소(0.22 → 0.2) 순서로 맞추고, 그래도 넘치면 멈추고 물어봐요
-- 클래스: #01 `chat-*` 블록을 복사해서 `hf-chat-*`로. `post-head`(제목 왼쪽에서 남은 너비, `card-head` 오른쪽에 지도 아이콘 64px)는 #01과 같은 구조
-- 크기는 #01 현재 값 그대로 (옛 템플릿 값 아님): 제목 72px / 스레드 `margin-top:16px; gap:10px` / 말풍선 30px lh 1.4, `padding:12px 22px 14px` / AI 말풍선 28px 500 `--ink-soft`, gap 16px / 나·AI 원 56px(글자 24px) / 반복 32px, 아이콘 40px / 결론 카드 `margin-top:12px; padding:16px 32px 18px`, 글자 44px lh 1.25
-- 단계 라벨 `출발 전, 내 이야기`: #01 React Chat은 제목 줄(`post-head`)이 주인공이라 단계 라벨을 그리지 않아요. 이번에도 **넣지 않아요** (8장 참고)
-- AI 쪽은 **실제 대사가 아니라 괄호 안 장면 설명**이에요 (#01과 같은 규칙)
+- 말풍선 글자는 #01 구현처럼 **따옴표 없이** 써요
+- 말풍선 순서 (시리즈 확정 규칙): 나 1 → AI 1(`WrongNav`) → 나 2 → AI 2(`Mock kind="modal"`) → 반복 → 나 3 `아니 그게 아니라,,`
+- 크기는 #01 값 그대로: 제목 72px / 말풍선 30px / AI 말풍선 28px / 원 56px / 미니 목업 `scale(.22)` / 반복 32px / 결론 카드 44px
+- AI 쪽은 **실제 대사가 아니라 괄호 안 장면 설명**이에요
 - 형광펜: **"Header, Footer"**
-- **주석 없음 (시리즈 확정 규칙)**: 채팅 장면은 일반적인 상황으로 두고, "실제 겪은 일"/"예시 장면" 같은 주석 줄을 넣지 않아요. #01 `Chat.jsx`의 `chat-note` 줄과 `.chat-note` CSS는 **복사하지 않아요**
-- 미니 목업 크기: #01 `.chat-mini`는 `scale(.22)`(66×124)예요 (원본 0.3배에서 줄인 값). 같은 값으로 시작하고, 가운데 핑크 띠와 `?`가 안 보이면 `.hf-chat-mini`만 `scale(.3)` + `width:90px; height:168px`로 키워요
+- **주석 없음 (시리즈 확정 규칙)**: "실제 겪은 일"/"예시 장면" 같은 주석 줄을 넣지 않아요
 - 완료 기준
-  - 나 1 말풍선 3줄, 나 2 말풍선 2줄, 오른쪽 "나" 원과 겹치지 않음
-  - AI 말풍선 2개 안의 미니 목업이 서로 다르게 보임 (1: 가운데 핑크 띠 + `?`, 2: 팝업 창)
-  - 결론 카드가 y=1230 위에서 끝나고, 그 아래 주석 줄이 없음
+  - 나 1·나 2 말풍선 각 2줄, 오른쪽 "나" 원과 겹치지 않음
+  - 반복 표시가 AI 2와 나 3 사이에 있음
+  - 미니 목업 2개가 서로 다르게 보임 (1: 가운데 핑크 띠 + `?`, 2: 팝업 창)
+  - 결론 카드가 y=1230 위에서 끝나고, 그 아래 주석 줄이 없음. 넘치면 `.hf-chat-thread` gap 10→6px
 
-### 03 · 구역 ①: 지도 펼치기 (`cards/PageMapCard.jsx` → `SectionCard`, wide)
+### 03 · 구역 ①: Header가 하는 일 (`cards/HeaderCard.jsx` → `SectionCard`, side)
+
+> 2026-10-04: 예전 03장 `지도 펼치기`(Header · Footer 위치 한눈에)는 02장과 내용이 겹쳐서 **삭제**했어요. Header 장이 03으로 올라오고, 새 Breadcrumb 장이 05에 들어가요.
 
 | prop | 값 |
 |---|---|
 | `page` | `"03"` |
-| `layout` | `"wide"` |
-| `mock` | `<PageMap />` |
-| `stage` | `구역 ①` |
-| `term` | `Header · Footer` |
-| `pron` | `[헤더 · 푸터]` |
-| `mean` | (없음) |
-| `when` | `홈페이지 뼈대를 처음 잡을 때 가장 먼저 정해요.` |
-| `items` | (없음) |
-| `tipLabel` | (없음) |
-| `tip` | `모든 페이지에 똑같이 들어가는<br>{HL("머리와 발")}` |
-| `fn` | (없음) |
-
-- 단계 라벨은 짧게 `구역 ①`~`구역 ⑤`만 써요 (시리즈 규칙). 카드의 큰 제목은 `term`이에요
-- 형광펜: **"머리와 발"** (팁 카드 안, 이 장의 유일한 형광펜)
-- `pron`이 `term` 옆에 안 들어가면 다음 줄로 내려가요 (`flex-wrap`). 그래도 괜찮아요
-- 일러스트: 4-2 `PageMap` (웹페이지 한 장, 맨 위 Header·맨 아래 Footer만 핑크로 강조, 오른쪽에 `← Header 머리`, `← 본문 페이지마다 달라요`, `← Footer 발` 라벨)
-- 완료 기준
-  - 목업 Header·Footer 띠만 진한 핑크, 본문은 흐리게 보임
-  - 라벨 3개가 해당 구역 높이에 맞춰 있고 창과 겹치지 않음
-  - 팁 카드가 y=1230 위에서 끝남. 넘치면 `pron`을 비우고, 그래도 넘치면 `PageMap` 높이를 540으로
-
-### 04 · 구역 ②: Header가 하는 일 (`cards/HeaderCard.jsx` → `SectionCard`, side)
-
-| prop | 값 |
-|---|---|
-| `page` | `"04"` |
 | `layout` | `"side"` |
 | `mock` | `<HeaderMock />` |
-| `stage` | `구역 ②` |
+| `stage` | `구역 ①` |
 | `term` | `Header` |
 | `pron` | `[헤더]` |
 | `mean` | `웹페이지 {B("맨 위")}에 늘 있는 구역이에요.` |
@@ -554,6 +570,7 @@ export function Summary() {
 | `items` | `{ n: "1", t: "어디서든 길 찾기", d: "로고를 누르면 홈으로,<br>메인 메뉴로 원하는<br>페이지에 바로 가요" }`, `{ n: "2", t: "자주 쓰는 행동", d: "검색, 로그인, 장바구니처럼<br>자주 누르는 버튼을<br>모아둬요" }` (`d`는 `<br />`이 들어간 JSX로) |
 | `tipLabel` / `tip` / `fn` | (없음) |
 
+- 단계 라벨은 짧게 `구역 ①`~`구역 ⑤`만 써요 (시리즈 규칙). 카드의 큰 제목은 `term`이에요
 - 형광펜: 없음
 - 일러스트: 4-3 `HeaderMock` (Header 띠 강조, 로고에 노란 점선 원 + `누르면 홈!`)
 - 완료 기준
@@ -562,14 +579,14 @@ export function Summary() {
   - 목업과 항목 카드가 세로 가운데 정렬
   - 전체가 y=1230 위
 
-### 05 · 구역 ③: Header 해부하기 (`cards/HeaderPartsCard.jsx` → `SectionCard`, wide)
+### 04 · 구역 ②: Header 해부하기 (`cards/HeaderPartsCard.jsx` → `SectionCard`, wide)
 
 | prop | 값 |
 |---|---|
-| `page` | `"05"` |
+| `page` | `"04"` |
 | `layout` | `"wide"` |
 | `mock` | `<HeaderParts />` |
-| `stage` | `구역 ③` |
+| `stage` | `구역 ②` |
 | `term` | `Header 속 단골들` |
 | `pron` / `mean` | (없음) |
 | `when` | `자주 쓰는 기능을 맨 위에 모아 둘 때 이 부품들을 써요.` |
@@ -598,6 +615,36 @@ export function Summary() {
   - 범례 5개가 2칸에 깔끔하게, 설명은 각각 1줄
   - 팁 카드가 y=1230 위에서 끝남. 넘치면 "넘칠 때" 규칙 2→3 순서로
 
+### 05 · 구역 ③: Breadcrumb (`cards/BreadcrumbCard.jsx` → `SectionCard`, side) · 새 카드
+
+| prop | 값 |
+|---|---|
+| `name` | `"Breadcrumb"` |
+| `page` | `"05"` |
+| `layout` | `"side"` |
+| `mock` | `<BreadcrumbMock />` |
+| `stage` | `구역 ③` |
+| `term` | `Breadcrumb` |
+| `pron` | `[브레드크럼]` |
+| `mean` | `지금 페이지까지 온 {B("길")}을 보여주는 줄이에요.` |
+| `when` | `쇼핑몰처럼 메뉴가 여러 단계로 깊어질 때 써요.` |
+| `items` / `tipLabel` / `tip` / `fn` | (없음) |
+| `before` | `"메뉴 밑에 지금 어디 있는지 작게 쭉 나오는 거 있잖아"` |
+| `after` | `"Header 아래에 '홈 > 상의 > 니트' {B("Breadcrumb")}을 넣고, 누르면 그 페이지로 가게 해줘"` |
+
+- **이 편에서 "잘못된 설명 / 용어를 알고 난 후" 박스가 있는 장은 05장뿐이에요.** Breadcrumb은 구역이 아니라 하나의 UI 용어라서 #01 `TermCard`와 같은 틀(뜻 → 언제 쓰는지 → 목업 + before/after)로 만들어요. `SectionCard`에 `before`/`after` props를 추가해서 그려요 (3-1)
+- before/after 글자는 #01처럼 줄바꿈 없이 칸 너비에 맞춰 자연스럽게 줄바꿈돼요
+- **JSX 주의**: 글자 안의 `>`는 JSX에서 그대로 쓰면 빌드 에러가 나요. `{"'홈 > 상의 > 니트'"}`처럼 중괄호 문자열로 넣어요 (목업 글자도 같음)
+- 단계 라벨: Breadcrumb은 엄밀히는 구역이 아니지만, 이 편 라벨은 `구역 ①`~`⑤`로 통일해요 (`Header 속 단골들`과 같은 방식)
+- 형광펜: 없음 (`after` 안 `Breadcrumb`은 `<b>`, `.hf-after b { color: var(--p-deep); }` = #01 `.term-after b`)
+- 일러스트: 4-2 `BreadcrumbMock` (Header 바로 밑 `홈 > 상의 > 니트` 줄만 핑크로 강조)
+- 완료 기준
+  - `mean`, `when`이 각각 1줄
+  - 오른쪽 칸(약 488px) 안의 before/after 박스에서 글자 넘침 없음, 사이에 아래 화살표
+  - 목업에서 `홈 > 상의 > 니트` 글자가 한 줄로 또렷하게 읽힘
+  - 03장(Header), 06장(Footer)과 같은 side 레이아웃 위치
+  - 전체가 y=1230 위. 넘치면 목업 칸 높이 540 → 480px
+
 ### 06 · 구역 ④: Footer가 하는 일 (`cards/FooterCard.jsx` → `SectionCard`, side)
 
 | prop | 값 |
@@ -615,7 +662,7 @@ export function Summary() {
 
 - 형광펜: 없음
 - 일러스트: 4-5 `FooterMock` (본문 흐리게, 맨 아래 Footer 띠 강조, 스크롤바 thumb가 맨 아래, `끝까지 내려오면…`)
-- 완료 기준: 04장과 같은 기준 + 04장과 나란히 놓았을 때 레이아웃이 같은 위치 (짝 장)
+- 완료 기준: 03장과 같은 기준 + 03장과 나란히 놓았을 때 레이아웃이 같은 위치 (짝 장)
 
 ### 07 · 구역 ⑤: Footer 해부하기 (`cards/FooterPartsCard.jsx` → `SectionCard`, wide)
 
@@ -647,7 +694,7 @@ export function Summary() {
 - 일러스트: 4-6 `FooterParts`
 - 완료 기준
   - 핀 번호 ↔ 범례 번호 일치 (①사이트맵 ②회사 정보 ③약관 ④SNS ⑤뉴스레터)
-  - 05장과 같은 구도로 보임 (짝 장)
+  - 04장과 같은 구도로 보임 (짝 장)
   - 주석이 y=1230 위
 
 ### 08 · 한 눈에 정리 (`cards/Summary.jsx`, #01 `Compare.jsx` 구조)
@@ -666,10 +713,11 @@ export function Summary() {
 | `Header` | `헤더` | `웹페이지 맨 위에 늘 있는 구역이에요.` |
 | `GNB` | `메인 메뉴` | `모든 페이지에 똑같이 들어가는 메인 메뉴예요.` |
 | `Sticky Header` | `스티키 헤더` | `스크롤해도 맨 위에 붙어 따라오는 Header예요.` |
-| `햄버거 메뉴` | `Hamburger Menu` | `모바일에서 메뉴를 접어둔 줄 세 개 버튼이에요.` |
+| `Breadcrumb` | `브레드크럼` | `지금 페이지까지 온 길을 보여주는 줄이에요.` |
 | `Footer` | `푸터` | `웹페이지 맨 아래에 늘 있는 구역이에요.` |
 
-- 행 순서는 09장 칩(`Header`, `Footer`, `GNB`, `Sticky Header`, `햄버거 메뉴`)과 같은 5개를 Header 쪽 → Footer 순으로 둔 것
+- 행 순서는 09장 칩(`Header`, `Footer`, `GNB`, `Sticky Header`, `Breadcrumb`)과 같은 5개를 화면 위→아래(Header 쪽 → Breadcrumb → Footer) 순으로 둔 것
+- **`햄버거 메뉴` 행은 빼요** (2026-10-04). 엔딩 스탬프가 `오늘 배운 단어 5개`라 5개를 유지하고, 햄버거 메뉴는 1탄 Drawer 카드에서 이미 다뤘어요. 04장 범례 ⑤에는 그대로 남아요
 - 표 아래 주석 없음. `GNB`의 풀이(Global Navigation Bar, main navigation)는 캡션에서 설명해요
 - 형광펜: **"이 표"**
 - 예전 08장(before/after 두 쌍)의 프롬프트 예시는 카드에서 빠지고 **캡션 "이렇게 말해보세요" 부분으로 옮겼어요** (7장)
@@ -683,7 +731,7 @@ export function Summary() {
 시리즈 확정 규칙(2026-10-03): 엔딩은 **모험·퀘스트 표현 없이 공부 노트처럼** 만들어요. `QUEST #`, `퀘스트 완료`, `NEXT QUEST`, `탐험`, 깃발·점선 루트·지도 같은 표현과 장식은 쓰지 않아요. 번호 상수(`QUEST_NO`, `NEXT_NO`)도 만들지 않아요.
 
 ```jsx
-const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "햄버거 메뉴"];
+const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "Breadcrumb"];
 ```
 
 | 자리 (#01 클래스 → 이 편) | 값 |
@@ -694,8 +742,8 @@ const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "햄버거 메뉴"];
 | 칩 제목 (`ending-loot h3`) | `✦ 이제 이렇게 말해요` |
 | 칩 | `LOOT` 5개를 `<li><span className="chip">…</span></li>`로 |
 | 다음 편 라벨 (`ending-label`) | `다음 편` (Mono 800 26px 대신 한글이라 Gaegu 700 34px `var(--p-deep)`로) |
-| 다음 편 제목 (`ending-title`) | `Hero Section 편` |
-| 다음 편 설명 (`ending-desc`) | `홈페이지 첫 화면의 큰 그림과 문구,<br>그 구역의 이름과 역할` (그대로) |
+| 다음 편 제목 (`ending-title`, 구현 클래스 `hf-ending-next-title`) | `입력하는 UI 편` |
+| 다음 편 설명 (`ending-desc`) | `Dropdown, Toggle, Checkbox처럼<br>고르고 입력하는 UI` (2줄) |
 | CTA (`ending-cta`) | `<span className="chip">🔖 저장하고 써먹기</span><span className="chip alt">👀 팔로우하고 다음 편 보기</span>` |
 | 장식 메모 (`ending-flagnote` → `hf-ending-note`) | `다음 편에서 만나요!` (`layer hand`, 36px `--p-deep`, 5° 회전, 위치는 #01 깃발 메모 자리) |
 
@@ -722,21 +770,23 @@ const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "햄버거 메뉴"];
 
 - [ ] `npm run dev` → `?post=ui-talk-02-header-footer`에서 9장이 순서대로 보임
 - [ ] `POST=ui-talk-02-header-footer npm run export`로 9장 모두 1080×1350 PNG, `posts/ui-talk-02-header-footer/still-cuts/01.png`~`09.png`
-- [ ] 모든 장에 계정명(`Post.jsx`가 넣는 `@crayon.chair`), `NN / 09` (`<Post page>` 확인)
+- [ ] 모든 장에 계정명(`Post.jsx`가 자동으로 넣음), `NN / 09` (`<Post page>` 확인, 03~07 페이지 번호가 새 순서와 맞는지)
 - [ ] 9장 어디에도 `QUEST #` 번호·진행 루트·퀘스트/탐험 문구가 없음 (03-UI + 시리즈 규칙)
 - [ ] 01장 커버가 `AI가 알아먹는 UI 용어집 2탄`, #01 커버와 같은 배치
-- [ ] 02장 나→AI 두 번 + 반복 + `"아니 그게 아니라,,"`
+- [ ] 02장 제목 `이런 상황이 답답하시죠,,`, 나→AI 두 번 + 반복 표시 + `아니 그게 아니라,,`, 첫 말이 캡션 인용과 같은 문장
 - [ ] 02장 아래 주석 줄(실제/예시 장면) 없음
-- [ ] 03~07장 단계 라벨이 `구역 ①`~`구역 ⑤`, 모두 `when` 한 문장이 있음
-- [ ] 08장이 "이름 | 기능" 정리표 5행, 표 아래 주석 없음
+- [ ] 03~07장 단계 라벨이 `구역 ①`~`구역 ⑤`(03 Header · 04 Header 해부 · 05 Breadcrumb · 06 Footer · 07 Footer 해부), 모두 `when` 한 문장이 있음
+- [ ] 05장 Breadcrumb에 `잘못된 설명` / `용어를 알고 난 후` 박스, 목업 `홈 > 상의 > 니트`가 읽힘. `PageMapCard`·`PageMap`이 남아 있지 않음
+- [ ] 08장이 "이름 | 기능" 정리표 5행(Header · GNB · Sticky Header · Breadcrumb · Footer), 표 아래 주석 없음
+- [ ] 09장 칩 5개에 Breadcrumb, 다음 편 `입력하는 UI 편`
 - [ ] 카드 글자에 퀘스트·주문·탐험·모험·지점·보물 표현이 없음 (말투 규칙)
 - [ ] 09장 공부 노트 스타일 (깃발·루트·열쇠 없음, 노트·체크 낙서 + 연필 낙서)
-- [ ] 형광펜은 01 "UI 용어집", 02 "Header, Footer", 03 "머리와 발", 08 "이 표" 4곳뿐
-- [ ] 05·07 핀 번호와 범례 일치
+- [ ] 형광펜은 01 "UI 용어집", 02 "Header, Footer", 08 "이 표" 3곳뿐
+- [ ] 04·07 핀 번호와 범례 일치
 - [ ] 새 클래스가 모두 `hf-` / `pm-` 접두사 (#01 클래스와 충돌 없음)
 - [ ] 공용 파일(`src/styles/*`, `src/ui/*`)과 `src/posts/ui-talk-01/**`에 변경 없음. 바뀐 기존 파일은 `App.jsx`, `main.jsx`, `scripts/export.mjs` 세 개뿐
 - [ ] #01 회귀 확인: `?post` 없이 `npm run dev`를 열면 #01 9장이 예전과 같고, `npm run export -- 03 05`(POST 없이)가 `posts/ui-talk-01/still-cuts/`에 예전과 같은 03·05를 만듦 (이 편 CSS가 #01에 영향 없는지)
-- [ ] `caption.md` 저장 (아래 초안)
+- [ ] `caption.md`를 아래 초안으로 교체
 
 ---
 
@@ -747,22 +797,25 @@ const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "햄버거 메뉴"];
 
 맨 위에 로고랑 메뉴 있는 그 줄, 이름이 뭐더라? 🤔
 
-"맨 위에 로고랑 메뉴 버튼 있는 줄 만들어줘. 아, 맨 밑에 회사 정보 적힌 데도"
+"맨 위에 로고랑 메뉴 버튼 있는 그 줄 만들어줘"
 이렇게 설명하면 AI가 메뉴를 엉뚱한 데 만들어 오기도 해요.
 "Header", "Footer" 두 단어면 바로 알아듣는데 말이에요.
 
 이번 편은 UI 하나가 아니라 페이지의 '구역'을 정리했어요 📒
-웹페이지의 머리와 발, 각각 무슨 일을 하고 뭐가 들어가는지 공부한 걸 나눠요.
+웹페이지의 머리와 발, 그리고 메뉴 밑에서 길을 알려주는 Breadcrumb까지 공부한 걸 나눠요.
 
 🧢 Header (헤더): 맨 위 구역. 어디서든 길을 찾게 해주고, 검색·로그인·장바구니처럼 자주 쓰는 버튼을 모아둬요
 └ 로고 · 메뉴(GNB) · 검색 · 로그인 버튼 · 모바일 햄버거 메뉴
 └ 스크롤해도 맨 위에 붙어 따라오면 Sticky Header
+📍 Breadcrumb (브레드크럼): Header 아래에서 지금 페이지까지 온 길을 보여주는 줄. 홈 > 상의 > 니트처럼 생겼어요
 👟 Footer (푸터): 맨 아래 구역. 끝까지 내려온 사람에게 다음 길을 알려주고, 회사 정보로 믿음을 줘요
 └ 사이트맵 링크 · 회사 정보 · 이용약관·개인정보처리방침 · SNS 아이콘 · 뉴스레터 구독
 
 ✏️ 이렇게 말해보세요
 잘못된 설명: "맨 위에 로고랑 메뉴 있는 줄 만들어줘"
 용어를 알고 난 후: "로고, GNB, 검색, 로그인 버튼이 있는 Sticky Header를 만들어줘"
+잘못된 설명: "메뉴 밑에 지금 어디 있는지 작게 쭉 나오는 거 있잖아"
+용어를 알고 난 후: "Header 아래에 '홈 > 상의 > 니트' Breadcrumb을 넣고, 누르면 그 페이지로 가게 해줘"
 잘못된 설명: "맨 밑에 회사 정보랑 약관 같은 거 적힌 데도 만들어줘"
 용어를 알고 난 후: "사이트맵 링크, 회사 정보, 이용약관·개인정보처리방침, SNS 아이콘이 들어간 Footer를 만들어줘"
 
@@ -772,19 +825,22 @@ const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "햄버거 메뉴"];
 8번째 장 정리표는 헷갈릴 때 꺼내 보기 좋아요.
 
 🔖 저장해두고 다음에 AI한테 써먹어보세요
-👀 다음 편은 "Hero Section"이에요. 팔로우하고 다음 편도 같이 봐요!
+👀 다음 편은 "입력하는 UI"예요 (Dropdown, Toggle, Checkbox 등). 팔로우하고 다음 편도 같이 봐요!
 💬 이름 몰라서 설명만 길어졌던 화면 있으면 댓글로 알려주세요. 다음 편에 넣어볼게요
 
 .
-#UI용어 #UIUX #UI디자인 #웹디자인 #웹개발 #프론트엔드 #웹퍼블리싱 #개발자 #개발공부 #코딩공부 #AI코딩 #바이브코딩 #프롬프트 #프롬프트엔지니어링 #ChatGPT #Claude #디자인용어 #헤더 #푸터 #랜딩페이지
+#UI용어 #UIUX #UI디자인 #웹디자인 #웹개발 #프론트엔드 #웹퍼블리싱 #개발자 #개발공부 #코딩공부 #AI코딩 #바이브코딩 #프롬프트 #프롬프트엔지니어링 #ChatGPT #Claude #디자인용어 #헤더 #푸터 #브레드크럼
 ```
 
 ---
 
 ## 8. 열려 있는 결정 (Andy 확인 필요)
 
-- 지금 열려 있는 결정은 없어요.
-- 참고: #01 `Ending.jsx`(퀘스트 문구)와 #01 엔딩의 다음 편 예고는 Andy가 직접 고쳐요. 이 편 작업에서는 #01 코드를 건드리지 않아요. #01 `Chat.jsx`에 남아 있는 `* 실제 겪은 일을 재구성한 장면이에요` 주석도 같은 범위예요.
+- 지금 꼭 정해야 하는 결정은 없어요. 아래는 이번 수정(2026-10-04)에서 판단한 것들이라, 다르게 하고 싶으면 알려주세요.
+  - **정리표·칩에서 `햄버거 메뉴`를 빼고 `Breadcrumb`을 넣었어요.** 엔딩 스탬프가 시리즈 규칙상 `오늘 배운 단어 5개`라 5개를 유지해야 하고, 햄버거 메뉴는 1탄 Drawer 카드에서 이미 다뤘어요(04장 범례 ⑤에는 그대로 남아요).
+  - **Breadcrumb 장 단계 라벨도 `구역 ③`이에요.** Breadcrumb은 엄밀히는 구역이 아니라 Header 밑에 붙는 요소지만, 시리즈 규칙("구역 편은 `구역 ①`~`구역 ⑤`")과 `Header 속 단골들` 장처럼 라벨을 통일했어요.
+  - **커버 부제는 Andy가 구현에서 바꾼 "오늘의 내용" 목록을 유지**하고 Breadcrumb 줄만 추가했어요. 주제를 설명형으로 보여줘서 "부제에 주제" 규칙을 지킨다고 봤어요.
+  - **채팅 제목·반복 표시는 시리즈 규칙대로 되돌려요.** 지금 구현은 제목이 `이런적이 있었나요?`이고 반복 표시가 빠져 있는데, `04-series-rules.md` 2장이 제목 `이런 상황이 답답하시죠,,`와 반복 표시를 정해 두고 있어요. 첫 말은 Andy가 줄인 문구를 유지했어요.
 
 ### React 구조로 옮기면서 빠진 것 (기록용)
 

@@ -107,4 +107,4 @@
 - 시리즈 코드 이름(`series="talk"`, `QuestTag` 같은 컴포넌트 이름)은 코드 안 이름이라 그대로 둬도 돼요. 화면에 보이는 글자만 이 규칙을 따라요
 
 ### 계정명
-- `@crayon.chair` (`src/ui/Post.jsx`에서 설정, Andy가 직접 관리해요)
+- `@crayon.sure` (`src/ui/Post.jsx`에서 설정, Andy가 직접 관리해요)
