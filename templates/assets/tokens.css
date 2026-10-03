@@ -1,0 +1,70 @@
+/* =========================================================
+   크레파스 모험일지 Design Tokens  (v0.1 draft)
+   모든 템플릿은 이 변수만 바꾸면 전체 톤이 바뀌도록 설계
+   ========================================================= */
+@font-face { font-family: "Jua"; src: url("../../fonts/Jua-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Gaegu"; src: url("../../fonts/Gaegu-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Gaegu"; src: url("../../fonts/Gaegu-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Pretendard"; src: url("../../fonts/Pretendard-Regular.woff2"); font-weight: 400; }
+@font-face { font-family: "Pretendard"; src: url("../../fonts/Pretendard-Medium.woff2"); font-weight: 500; }
+@font-face { font-family: "Pretendard"; src: url("../../fonts/Pretendard-SemiBold.woff2"); font-weight: 600; }
+@font-face { font-family: "Pretendard"; src: url("../../fonts/Pretendard-Bold.woff2"); font-weight: 700; }
+@font-face { font-family: "Pretendard"; src: url("../../fonts/Pretendard-ExtraBold.woff2"); font-weight: 800; }
+@font-face { font-family: "JetBrains Mono"; src: url("../../fonts/JetBrainsMono-VariableFont_wght.ttf"); font-weight: 100 800; }
+
+:root, :host {
+  /* ---- Paper (배경) ---- */
+  --paper:        #FFF9F0;  /* 기본 도화지 */
+  --paper-warm:   #FBEFDD;  /* 지도 종이 / 카드 바탕 */
+  --paper-line:   #EFE2CC;  /* 모눈·구분선 */
+
+  /* ---- Ink (글자) ---- */
+  --ink:          #3D3654;  /* 본문·제목 (순검정 대신 보라빛 남색) */
+  --ink-soft:     #7A7291;  /* 보조 텍스트 */
+  --ink-faint:    #B9B1C9;  /* 캡션·비활성 */
+
+  /* ---- Pillar pastel (크레파스 색) ---- */
+  --ui:           #F9B4C4;  /* 🎨 UI/UX  : 딸기우유 핑크 */
+  --ui-deep:      #D9637F;  /*  └ 같은 계열 진한 글자/외곽선 */
+  --ai:           #A9D3F5;  /* 🤖 AI     : 소다 하늘색 */
+  --ai-deep:      #3F82C0;
+  --dev:          #B4E3BE;  /* 🧭 Dev    : 새싹 민트 */
+  --dev-deep:     #3E9960;
+
+  /* ---- Shared accents ---- */
+  --sun:          #FFE08A;  /* 형광펜·별·스탬프 (크레파스 노랑) */
+  --sun-deep:     #E0A722;
+  --lilac:        #D2C2F5;  /* 보조 장식 (만약에 UI 등) */
+  --peach:        #FFC9A3;  /* 보조 장식 */
+  --white:        #FFFFFF;
+
+  /* ---- Pillar 런타임 변수 (data-pillar 로 전환) ---- */
+  --p:      var(--ui);
+  --p-deep: var(--ui-deep);
+
+  /* ---- Typography ---- */
+  --f-display: "Jua", "Pretendard", sans-serif;        /* 제목: 둥글고 친근 */
+  --f-hand:    "Gaegu", "Jua", sans-serif;              /* 손글씨 메모·주석 */
+  --f-body:    "Pretendard", "Noto Sans CJK KR", sans-serif;
+  --f-mono:    "JetBrains Mono", "Pretendard", monospace;
+
+  --t-hero:   128px;  /* 커버 메인 타이틀 */
+  --t-h1:      84px;  /* 카드 제목(용어) */
+  --t-h2:      56px;
+  --t-h3:      40px;
+  --t-body:    36px;  /* 본문 최소 32px 유지 */
+  --t-small:   28px;
+  --t-hand:    40px;
+
+  /* ---- Layout (1080 x 1350, 8px base) ---- */
+  --w: 1080px; --h: 1350px;
+  --m-x: 88px;    /* 좌우 여백 (3:4 그리드 크롭 ~33px 고려) */
+  --m-top: 96px;
+  --m-bot: 104px;
+  --gap-1: 8px; --gap-2: 16px; --gap-3: 24px; --gap-4: 32px; --gap-6: 48px; --gap-8: 64px;
+  --radius: 36px;
+  --stroke: 6px;
+}
+[data-pillar="ui"]  { --p: var(--ui);  --p-deep: var(--ui-deep); }
+[data-pillar="ai"]  { --p: var(--ai);  --p-deep: var(--ai-deep); }
+[data-pillar="dev"] { --p: var(--dev); --p-deep: var(--dev-deep); }

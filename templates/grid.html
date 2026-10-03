@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<script src="assets/crayon.js"></script>
+<style>
+  /* 프로필 3x3 목업: 각 타일 = cover.html 을 3:4(1012x1350) 중앙 크롭으로 축소 */
+  html, body { height: 1640px; }
+  .wrap { width: 1080px; background: var(--white); }
+  .prof { height: 200px; display: flex; align-items: center; gap: 36px; padding: 0 48px; }
+  .avatar { width: 136px; height: 136px; position: relative; flex: none; }
+  .avatar svg { width: 100%; height: 100%; }
+  .prof .name { font-family: var(--f-display); font-size: 40px; }
+  .prof .bio { font-size: 26px; color: var(--ink-soft); font-weight: 500; margin-top: 6px; line-height: 1.45; }
+  .prof .mock { font-family: var(--f-hand); font-weight: 700; font-size: 26px; color: var(--ink-faint); margin-top: 4px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .tile { height: 477px; overflow: hidden; position: relative; background: var(--paper); }
+  .tile iframe { position: absolute; top: 0; left: -12px; width: 1080px; height: 1350px; border: 0;
+    transform: scale(.3531); transform-origin: 0 0; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="prof">
+    <div class="avatar"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="62" fill="var(--sun)" filter="url(#wax)"/>
+      <g transform="translate(26 26) scale(.88)" fill="none" stroke="var(--ink)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#wax-stroke)"><circle cx="50" cy="50" r="34"/><path d="M50 22l9 28-9 28-9-28z"/></g></svg></div>
+    <div><div class="name">Andy | 개발 · AI · UI</div>
+      <div class="bio">개발 공부하다 알게 된 거, 재밌게 풀어드림 🧭</div>
+      <div class="mock">* 프로필 목업 — 최신 게시물이 왼쪽 위</div></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+  const hl = t => `<span class="hl">${t}</span>`;
+  const T = [ // 최신 → 오래된 순 (9번째 = 첫 게시물)
+    {series:"talk",   no:2, kicker:"AI한테", title:`레이아웃<br>${hl("용어")} 5개`},
+    {series:"cando",  no:2, kicker:"이것도 AI로?", title:`새 도구<br>${hl("탐험기")}`},
+    {series:"log",    no:1, kicker:"모험일지", title:`프로젝트<br>${hl("퀘스트")}<br>시작!`},
+    {series:"weekly", no:1, kicker:"이번 주 AI", title:`이번 주<br>${hl("AI 소식")}<br>정리`},
+    {series:"silly",  no:1, kicker:"이번 주 챌린지", title:`쓸모없는<br>${hl("앱 만들기")}`},
+    {series:"whatif", no:1, kicker:"만약에", title:`만 보 걸어야<br>${hl("열리는")}<br>배달앱`},
+    {series:"log",    no:0, kicker:"출발 전 브리핑", title:`이 계정을<br>${hl("시작하는")}<br>이유`},
+    {series:"cando",  no:1, kicker:"Remotion 발견!", title:`영상도<br>${hl("코드로")}<br>만든다고?`},
+    {series:"talk",   no:1, kicker:"AI한테", title:`${hl("'예쁘게 해줘'")}<br>말고 이렇게<br>말하세요`},
+  ];
+  document.getElementById("grid").innerHTML = T.map(t => {
+    const q = new URLSearchParams({...t, sub:"", note:"", pg:""}).toString();
+    return `<div class="tile"><iframe src="cover.html?${q}" scrolling="no"></iframe></div>`;
+  }).join("");
+</script>
+</body></html>

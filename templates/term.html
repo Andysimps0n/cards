@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<script src="assets/crayon.js"></script>
+<style>
+  /* 콘텐츠(용어) 카드: 진행 루트 → 용어 → 뜻 → 예시 → 프롬프트 */
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .quest-tag .badge { width: 96px; height: 96px; }
+  .quest-tag .qname { font-size: 34px; }
+  .progress { display: flex; align-items: center; gap: 0; }
+  .progress svg { width: 300px; height: 60px; overflow: visible; }
+  .stage { margin-top: 64px; font-family: var(--f-hand); font-weight: 700; font-size: 44px; color: var(--p-deep); }
+  .term { display: flex; align-items: baseline; gap: 28px; margin-top: 4px; }
+  .term h1 { font-size: 120px; line-height: 1.1; }
+  .term .en { font-family: var(--f-mono); font-size: 36px; font-weight: 600; color: var(--ink-soft); }
+  .mean { margin-top: 28px; font-size: 40px; line-height: 1.55; font-weight: 600; }
+  .mean b { font-weight: 800; }
+  .demo { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .demo .card { padding: 30px; }
+  .demo .cap { font-family: var(--f-hand); font-weight: 700; font-size: 34px; margin-bottom: 16px; display: flex; gap: 8px; align-items: center; }
+  .mock { background: var(--paper-warm); border-radius: 18px; height: 190px; display: flex; flex-direction: column; }
+  .mock i { display: block; background: var(--ink-faint); border-radius: 6px; }
+  .tight { padding: 10px; gap: 6px; } .tight i { height: 24px; } .tight i:first-child { height: 40px; background: var(--ink-soft); }
+  .airy { padding: 30px; gap: 22px; } .airy i { height: 18px; width: 70%; } .airy i:first-child { height: 34px; width: 55%; background: var(--ink-soft); }
+  .prompt { margin-top: 44px; }
+  .mark-o, .mark-x { width: 40px; height: 40px; }
+</style></head>
+<body data-series="talk">
+<div class="post">
+  <div class="head">
+    <div class="quest-tag">
+      <div class="badge" data-badge></div>
+      <div class="meta"><span class="qno">QUEST #<span data-no>01</span></span><span class="qname" data-series-name></span></div>
+    </div>
+    <!-- 진행 루트: 5개 지점 중 현재 지점만 칠함. data-step 로 변경 -->
+    <div class="progress" id="progress" data-step="1" data-total="5"></div>
+  </div>
+
+  <div class="stage" data-field="stage">용어 ① 첫 번째 지점</div>
+  <div class="term"><h1 class="display" data-field="term">여백</h1><span class="en" data-field="en">Whitespace</span></div>
+  <p class="mean" data-field="mean">요소 사이의 <span class="hl thick">빈 공간</span>이에요.<br>비울수록 중요한 게 먼저 눈에 들어와요.</p>
+
+  <div class="demo">
+    <div class="card"><div class="cap"><span class="mark-x" data-icon="x" data-color="var(--ink-soft)" data-w="10"></span>빽빽하게</div>
+      <div class="mock tight"><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="card"><div class="cap"><span class="mark-o" data-icon="star" data-color="var(--sun-deep)" data-w="8"></span>여백 넉넉하게</div>
+      <div class="mock airy"><i></i><i></i><i></i></div></div>
+  </div>
+
+  <div class="prompt"><span class="label">✎ AI한테 이렇게 말해</span><span class="ko" data-field="prompt">"카드 안쪽 여백은 넉넉하게,<br>섹션 사이 간격은 더 크게 잡아줘."</span></div>
+
+  <div class="footer"><span data-field="handle">@crayon.sure</span><span class="pg" data-field="pg">03 / 09</span></div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("progress");
+    const q = new URLSearchParams(location.search);
+    const step = +(q.get("step") || el.dataset.step), total = +(q.get("total") || el.dataset.total);
+    const gap = 280 / (total - 1); let dots = "";
+    for (let i = 0; i < total; i++) {
+      const x = 10 + i * gap, on = i < step;
+      dots += `<circle cx="${x}" cy="30" r="${i === step - 1 ? 17 : 11}" fill="${on ? 'var(--p)' : 'var(--paper)'}" stroke="var(--p-deep)" stroke-width="4" filter="url(#wax-stroke)"/>`;
+    }
+    el.innerHTML = `<svg viewBox="0 0 300 60"><path d="M10 30 H290" stroke="var(--p-deep)" stroke-opacity=".55" stroke-width="6" stroke-dasharray="2 13" stroke-linecap="round"/>${dots}</svg>`;
+  });
+</script>
+</body></html>

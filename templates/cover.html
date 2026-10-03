@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<script src="assets/crayon.js"></script>
+<style>
+  /* 커버: 시리즈 배지 → 큰 제목 → 손글씨 부제 → 하단 루트선 + 목적지 */
+  .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .compass { width: 110px; height: 110px; opacity: .85; margin-top: 6px; }
+  .kicker { margin-top: 92px; font-family: var(--f-hand); font-weight: 700; font-size: 48px; color: var(--p-deep); }
+  .title { margin-top: 12px; font-size: var(--t-hero); line-height: 1.24; }
+  .sub { margin-top: 44px; font-size: 38px; line-height: 1.5; color: var(--ink-soft); font-weight: 500; }
+  .blob { left: 520px; top: 300px; width: 640px; height: 560px; opacity: .55; }
+  .route { left: 0; bottom: 0; width: 1080px; height: 470px; }
+  .dest { right: 96px; bottom: 170px; width: 130px; height: 130px; }
+  .swipe { position: absolute !important; left: var(--m-x); bottom: 150px; font-family: var(--f-hand); font-weight: 700;
+    font-size: 40px; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+  .swipe .ar { width: 80px; height: 50px; }
+  .spark { width: 56px; height: 56px; }
+  .note { right: 70px; bottom: 300px; font-size: 38px; color: var(--p-deep); transform: rotate(-6deg); }
+  .swipe { font-size: 44px; }
+</style></head>
+<body data-series="talk">
+<div class="post">
+  <svg class="layer blob" viewBox="0 0 640 560"><path d="M330 30c150-10 290 90 300 230 10 150-120 280-290 290C170 560 20 450 10 290 0 150 160 40 330 30z" fill="var(--p)" filter="url(#wax)"/></svg>
+  <svg class="layer route" viewBox="0 0 1080 470" fill="none">
+    <path d="M-20 420 C 180 380, 260 250, 430 300 S 700 420, 860 250" stroke="var(--p-deep)" stroke-width="9" stroke-dasharray="4 26" stroke-linecap="round" filter="url(#wax-stroke)"/>
+  </svg>
+  <div class="layer dest" data-icon="x" data-color="var(--p-deep)" data-w="11"></div>
+  <div class="layer spark" style="left:930px; top:560px" data-icon="star" data-color="var(--sun-deep)" data-w="6"></div>
+  <div class="layer spark" style="left:860px; top:470px; width:36px; height:36px" data-icon="star" data-color="var(--sun-deep)" data-w="7"></div>
+
+  <div class="top">
+    <div class="quest-tag">
+      <div class="badge" data-badge></div>
+      <div class="meta">
+        <span class="qno">QUEST #<span data-no>01</span></span>
+        <span class="qname" data-series-name>AI한테 이렇게 말해</span>
+        <span class="qtype" data-series-type>주문서 퀘스트</span>
+      </div>
+    </div>
+    <div class="compass" data-icon="compass" data-color="var(--ink-soft)" data-w="5"></div>
+  </div>
+
+  <div class="kicker" data-field="kicker">AI한테</div>
+  <h1 class="display title" data-field="title"><span class="hl">'예쁘게 해줘'</span><br>말고 이렇게<br>말하세요</h1>
+  <p class="sub" data-field="sub">디자인 용어 5개만 알면<br>결과물이 달라져요</p>
+
+  <div class="footer"><span data-field="handle">@crayon.sure</span><span class="pg" data-field="pg">01 / 09</span></div>
+</div>
+</body></html>

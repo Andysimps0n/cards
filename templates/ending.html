@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<script src="assets/crayon.js"></script>
+<style>
+  /* 엔딩 카드: 퀘스트 클리어 스탬프 → 획득 아이템 요약 → 다음 퀘스트 예고 → 저장/팔로우 CTA */
+  .clear { display: flex; align-items: center; gap: 28px; margin-top: 8px; }
+  .stamp { width: 230px; height: 230px; position: relative; flex: none; transform: rotate(-8deg); }
+  .stamp svg { position: absolute; inset: 0; }
+  .stamp span { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: var(--f-display); font-size: 40px; color: var(--sun-deep); line-height: 1.05; text-align: center; }
+  .stamp span small { font-family: var(--f-mono); font-size: 20px; font-weight: 800; letter-spacing: .1em; }
+  .clear h1 { font-size: 112px; line-height: 1.15; }
+  .loot { margin-top: 64px; }
+  .loot h3 { font-family: var(--f-hand); font-weight: 700; font-size: 42px; color: var(--p-deep); margin-bottom: 18px; }
+  .loot ul { list-style: none; display: flex; flex-wrap: wrap; gap: 16px; }
+  .loot li .chip { font-size: 32px; }
+  .next { margin-top: 64px; }
+  .next .card { padding: 40px 48px; }
+  .next .lbl { font-family: var(--f-mono); font-weight: 800; font-size: 26px; letter-spacing: .1em; color: var(--p-deep); }
+  .next .t { font-family: var(--f-display); font-size: 56px; margin-top: 10px; line-height: 1.25; }
+  .next .d { margin-top: 10px; font-size: 32px; color: var(--ink-soft); font-weight: 500; }
+  .next .lock { position: absolute; right: 40px; top: 36px; width: 84px; height: 84px; }
+  .cta { position: absolute !important; left: var(--m-x); bottom: 150px; display: flex; gap: 20px; }
+  .flag { right: 92px; bottom: 210px; width: 110px; height: 110px; }
+  .flagnote { right: 70px; bottom: 330px; font-size: 36px; color: var(--p-deep); transform: rotate(5deg); }
+  .cta .chip { font-size: 36px; padding: 16px 32px 18px; }
+  .cta .chip.alt::before { background: var(--sun); }
+  .csub { margin-top: 14px; font-size: 36px; font-weight: 700; line-height: 1.45; }
+  .csub:empty { display: none; }
+  .clear:has(.csub:not(:empty)) ~ .loot { margin-top: 44px; }
+  .clear:has(.csub:not(:empty)) ~ .next { margin-top: 44px; }
+  .route { left: 0; top: 0; width: 1080px; height: 1350px; }
+</style></head>
+<body data-series="talk">
+<div class="post">
+  <svg class="layer route" viewBox="0 0 1080 1350" fill="none">
+    <path d="M150 1010 C 300 1120, 560 1000, 760 1090 S 900 1150, 930 1110" stroke="var(--p-deep)" stroke-opacity=".6" stroke-width="8" stroke-dasharray="3 24" stroke-linecap="round" filter="url(#wax-stroke)"/>
+  </svg>
+  <div class="layer flag" data-icon="flag" data-color="var(--p-deep)" data-w="7"></div>
+  <div class="layer flagnote hand" data-field="flag-note">다음 지점에서 만나요!</div>
+  <div class="clear">
+    <div class="stamp">
+      <svg viewBox="0 0 210 210" width="230" height="230"><circle cx="105" cy="105" r="92" fill="var(--sun)" filter="url(#wax)"/>
+        <circle cx="105" cy="105" r="78" fill="none" stroke="var(--sun-deep)" stroke-width="5" filter="url(#wax-stroke)"/></svg>
+      <span><small>QUEST #<b data-no>01</b></small>클리어!</span>
+    </div>
+    <div><h1 class="display" data-field="title">퀘스트<br>완료!</h1><p class="csub" data-field="sub"></p></div>
+  </div>
+
+  <div class="loot">
+    <h3 data-field="loot-title">✦ 오늘 얻은 주문 5개</h3>
+    <ul data-field="loot">
+      <li><span class="chip">여백</span></li><li><span class="chip">시각적 위계</span></li><li><span class="chip">글래스모피즘</span></li>
+      <li><span class="chip">벤토 그리드</span></li><li><span class="chip">마이크로 인터랙션</span></li>
+    </ul>
+  </div>
+
+  <div class="next">
+    <div class="card warm">
+      <div class="lock" data-icon="key" data-color="var(--p-deep)" data-w="7"></div>
+      <div class="lbl">NEXT QUEST #<span data-field="next-no">02</span></div>
+      <div class="t" data-field="next">다음 주문서는 뭘까요?</div>
+      <div class="d" data-field="next-desc">궁금한 디자인 용어를 댓글로 알려주세요</div>
+    </div>
+  </div>
+
+  <div class="cta" data-field="cta"><span class="chip">🔖 저장해두고 써먹기</span><span class="chip alt">🧭 같이 탐험하기</span></div>
+  <div class="footer"><span data-field="handle">@crayon.sure</span><span class="pg" data-field="pg">09 / 09</span></div>
+</div>
+</body></html>

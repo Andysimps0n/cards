@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<script src="assets/crayon.js"></script>
+<style>
+  /* 한눈에 비교(저장용) 카드: 배지 + 진행 루트(전부 칠함) → 제목 → 비교표 → 주석 */
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .quest-tag .badge { width: 96px; height: 96px; }
+  .quest-tag .qname { font-size: 34px; }
+  .progress svg { width: 300px; height: 60px; overflow: visible; }
+  .stage { margin-top: 40px; font-family: var(--f-hand); font-weight: 700; font-size: 42px; color: var(--p-deep); }
+  .title { font-size: 76px; line-height: 1.2; }
+  .save { position: absolute !important; right: 80px; top: 300px; transform: rotate(6deg); font-family: var(--f-hand); font-weight: 700;
+    font-size: 38px; color: var(--sun-deep); }
+  .tbl.card { margin-top: 36px; padding: 14px 28px 12px; }
+  .tbl.card::before { border-color: var(--p); }
+  .tr { display: grid; grid-template-columns: 240px 186px 196px 1fr; align-items: center; gap: 12px; min-height: 128px;
+    border-top: 4px dashed var(--paper-line); }
+  .tr.th { min-height: 96px; border-top: none; font-family: var(--f-hand); font-weight: 700; font-size: 34px; line-height: 1.05; color: var(--p-deep); }
+  .name { font-family: var(--f-display); font-size: 38px; white-space: nowrap; line-height: 1.1; }
+  .name small { display: block; margin-top: 6px; font-family: var(--f-body); font-size: 26px; font-weight: 600; color: var(--ink-soft); }
+  .td { font-size: 28px; line-height: 1.4; font-weight: 600; }
+  .td.soft { color: var(--ink-soft); font-weight: 500; }
+  .pill { display: inline-block; padding: 6px 18px 8px; border-radius: 999px; font-family: var(--f-display); font-size: 29px; position: relative; isolation: isolate; white-space: nowrap; }
+  .pill::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; filter: url(#wax); }
+  .pill.yes::before { background: var(--p); }
+  .pill.mid::before { background: var(--sun); }
+  .pill.no::before { background: var(--paper-warm); border: 4px solid var(--ink-faint); }
+  .fn { margin-top: 26px; font-size: 28px; line-height: 1.5; color: var(--ink-soft); font-weight: 500; }
+</style></head>
+<body data-series="talk">
+<div class="post">
+  <div class="head">
+    <div class="quest-tag">
+      <div class="badge" data-badge></div>
+      <div class="meta"><span class="qno">QUEST #<span data-no>01</span></span><span class="qname" data-series-name></span></div>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+  <div class="stage" data-field="stage">지도 한 장 요약</div>
+  <h1 class="display title" data-field="title">헷갈릴 땐 <span class="hl">이 표</span> 하나</h1>
+  <div class="save" data-field="save">저장 필수!</div>
+
+  <div class="tbl card" data-field="table">
+    <div class="tr th"><span>이름</span><span>어디서<br>나오나</span><span>뒤를<br>막나</span><span>저절로<br>사라지나</span></div>
+    <div class="tr"><div class="name">Modal<small>모달</small></div><div class="td">화면 가운데</div><div><span class="pill yes">막아요</span></div><div class="td soft">아니요,<br>직접 닫아요</div></div>
+    <div class="tr"><div class="name">Bottom Sheet<small>바텀 시트</small></div><div class="td">화면 아래</div><div><span class="pill mid">경우에 따라</span></div><div class="td soft">아니요,<br>직접 닫아요</div></div>
+    <div class="tr"><div class="name">Drawer<small>드로어</small></div><div class="td">화면 옆</div><div><span class="pill yes">대개 막아요</span></div><div class="td soft">아니요,<br>직접 닫아요</div></div>
+    <div class="tr"><div class="name">Toast<small>토스트</small></div><div class="td">화면 아래나 위</div><div><span class="pill no">안 막아요</span></div><div class="td">네,<br>몇 초 뒤 사라져요</div></div>
+    <div class="tr"><div class="name">Tooltip<small>툴팁</small></div><div class="td">가리킨 요소 옆</div><div><span class="pill no">안 막아요</span></div><div class="td">커서·포커스가<br>떠나면 사라져요</div></div>
+  </div>
+  <p class="fn" data-field="fn">* 흔히 쓰는 방식 기준이에요. 서비스나 디자인 시스템마다 조금씩 달라요.</p>
+
+  <div class="footer"><span data-field="handle">@crayon.sure</span><span class="pg" data-field="pg">08 / 09</span></div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const total = 5, gap = 280 / (total - 1); let dots = "";
+    for (let i = 0; i < total; i++) dots += `<circle cx="${10 + i * gap}" cy="30" r="${i === total - 1 ? 17 : 11}" fill="var(--p)" stroke="var(--p-deep)" stroke-width="4" filter="url(#wax-stroke)"/>`;
+    document.getElementById("progress").innerHTML = `<svg viewBox="0 0 300 60"><path d="M10 30 H290" stroke="var(--p-deep)" stroke-opacity=".55" stroke-width="6" stroke-dasharray="2 13" stroke-linecap="round"/>${dots}</svg>`;
+  });
+</script>
+</body></html>

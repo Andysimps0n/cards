@@ -1,0 +1,21 @@
+---
+description: 카드 위를 겹치는 손글씨 메모는 표에 가리지 않게 둔다
+globs: src/posts/**/cards.css
+alwaysApply: false
+---
+
+# 겹치는 메모
+
+표·카드 위에 얹는 손글씨 메모(예: `.compare-save`)는 글자가 아래에 깔리지 않게 한다.
+
+- `z-index`는 **3**으로 고정한다. `.post > * { z-index: 1 }`보다 구체적이어야 하므로 `.compare-save { z-index: 3 }`만 쓰지 말고 `.post > .compare-save { z-index: 3 }`로 둔다.
+- 글자 뒤에는 배경을 깐다. 필터는 글자가 들어 있는 요소가 아니라 `::before`에만 건다.
+
+```css
+.post > .compare-save { z-index: 3; }
+.compare-save { isolation: isolate; }
+.compare-save::before {
+  content: ""; position: absolute; z-index: -1; inset: 0;
+  background: var(--white); filter: url(#wax);
+}
+```

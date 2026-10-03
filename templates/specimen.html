@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<script src="assets/crayon.js"></script>
+<style>
+  .post { padding: 60px 72px 60px; }
+  .hd { display: flex; justify-content: space-between; align-items: flex-end; }
+  .hd h1 { font-size: 58px; white-space: nowrap; } .hd .v { font-family: var(--f-hand); font-weight: 700; font-size: 32px; color: var(--ink-soft); }
+  h2 { font-family: var(--f-hand); font-weight: 700; font-size: 34px; color: var(--ink-soft); margin: 20px 0 10px; }
+  .sw { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .s { display: flex; flex-direction: column; gap: 8px; }
+  .s .c { height: 70px; position: relative; }
+  .s .c svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .s b { font-family: var(--f-display); font-weight: 400; font-size: 24px; }
+  .s code { font-family: var(--f-mono); font-size: 19px; color: var(--ink-soft); font-weight: 600; }
+  .pill3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .pill { display: flex; align-items: center; gap: 14px; }
+  .pill .badge { width: 84px; height: 84px; flex: none; }
+  .pill .badge svg { width: 100%; height: 100%; overflow: visible; }
+  .pill b { font-family: var(--f-display); font-weight: 400; font-size: 32px; display: block; }
+  .pill span { font-size: 19px; white-space: nowrap; color: var(--ink-soft); font-weight: 500; line-height: 1.35; display: block; }
+  .type { display: grid; grid-template-columns: 1fr; gap: 4px; }
+  .ty { display: grid; grid-template-columns: 210px 1fr; align-items: center; gap: 16px; padding: 4px 0 8px; border-bottom: 3px dotted var(--paper-line); }
+  .ty .meta { font-family: var(--f-mono); font-size: 19px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
+  .ty .meta b { display: block; font-family: var(--f-display); font-weight: 400; color: var(--ink); font-size: 26px; }
+  .motifs { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+  .motifs div { height: 62px; }
+  .motifs div svg { width: 100%; height: 100%; }
+</style></head>
+<body>
+<div class="post" data-pillar="ui">
+  <div class="hd"><h1 class="display">크레파스 모험일지 <span class="hl">디자인 시스템</span></h1><span class="v">v0.1 초안</span></div>
+
+  <h2>✦ 팔레트 — 종이 · 잉크 · 크레파스</h2>
+  <div class="sw" id="sw"></div>
+
+  <h2>✦ 필러 = 퀘스트 색</h2>
+  <div class="pill3">
+    <div class="pill" data-pillar="ui"><div class="badge" data-badge-key="talk"></div><div><b>UI/UX</b><span>딸기우유 핑크<br>#F9B4C4 · #D9637F</span></div></div>
+    <div class="pill" data-pillar="ai"><div class="badge" data-badge-key="cando"></div><div><b>AI</b><span>소다 하늘색<br>#A9D3F5 · #3F82C0</span></div></div>
+    <div class="pill" data-pillar="dev"><div class="badge" data-badge-key="log"></div><div><b>개발 일상</b><span>새싹 민트<br>#B4E3BE · #3E9960</span></div></div>
+  </div>
+
+  <h2>✦ 타이포그래피</h2>
+  <div class="type">
+    <div class="ty"><div class="meta"><b>Jua</b>Display · 400<br>제목 128/84/56</div><div class="display" style="font-size:52px">퀘스트 시작! Quest 01</div></div>
+    <div class="ty"><div class="meta"><b>Gaegu</b>Hand · 700<br>메모 · 주석</div><div class="hand" style="font-size:44px">밀어서 다음 지점으로 →</div></div>
+    <div class="ty"><div class="meta"><b>Pretendard</b>Body · 500/600/800<br>본문 36~40</div><div style="font-size:36px; font-weight:600; line-height:1.4">요소 사이의 빈 공간이에요. <span style="font-weight:800">비울수록</span> 잘 보여요.</div></div>
+    <div class="ty"><div class="meta"><b>JetBrains Mono</b>Mono · 500/800<br>코드 · 번호</div><div class="mono" style="font-size:34px">QUEST #01 · padding: 24px;</div></div>
+  </div>
+
+  <h2>✦ 모티프 (크레파스 질감은 장식에만)</h2>
+  <div class="motifs">
+    <div data-icon="compass" data-color="var(--ink)"></div><div data-icon="map" data-color="var(--ink)"></div>
+    <div data-icon="pin" data-color="var(--ui-deep)"></div><div data-icon="x" data-color="var(--ui-deep)" data-w="10"></div>
+    <div data-icon="flag" data-color="var(--dev-deep)"></div><div data-icon="key" data-color="var(--ai-deep)"></div>
+    <div data-icon="star" data-color="var(--sun-deep)"></div><div data-icon="arrow" data-color="var(--ink)"></div>
+  </div>
+</div>
+<script>
+  const C = [["도화지","--paper","#FFF9F0"],["지도 종이","--paper-warm","#FBEFDD"],["모눈선","--paper-line","#EFE2CC"],
+    ["잉크","--ink","#3D3654"],["연한 잉크","--ink-soft","#7A7291"],["흐린 잉크","--ink-faint","#B9B1C9"],
+    ["UI 핑크","--ui","#F9B4C4"],["AI 하늘","--ai","#A9D3F5"],["Dev 민트","--dev","#B4E3BE"],
+    ["크레파스 노랑","--sun","#FFE08A"],["라일락","--lilac","#D2C2F5"],["복숭아","--peach","#FFC9A3"]];
+  document.getElementById("sw").innerHTML = C.map(([n,v,h]) => `<div class="s"><div class="c"><svg viewBox="0 0 150 104" preserveAspectRatio="none">
+    <path d="M10 8 C 50 2, 110 4, 142 10 C 148 40, 146 70, 140 96 C 100 102, 40 100, 8 96 C 3 66, 4 34, 10 8z" fill="var(${v})" ${v.includes('paper')? 'stroke="var(--paper-line)" stroke-width="3"':''} filter="url(#wax)"/></svg></div>
+    <b>${n}</b><code>${h}</code></div>`).join("");
+</script>
+</body></html>

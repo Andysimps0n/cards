@@ -1,0 +1,70 @@
+/* ===== Base + Components (크레파스 모험일지) ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { color: var(--ink); font-family: var(--f-body);
+  -webkit-font-smoothing: antialiased; word-break: keep-all; }
+
+.post { position: relative; width: var(--w); height: var(--h); overflow: hidden;
+  background: var(--paper); padding: var(--m-top) var(--m-x) var(--m-bot); }
+
+/* 종이 질감 + 지도 모눈 (장식 레이어, 글자에 영향 없음) */
+.post::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    radial-gradient(circle, var(--paper-line) 2.2px, transparent 2.6px);
+  background-size: 48px 48px; background-position: 24px 24px; opacity: .9; }
+.post > .grain { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .35; mix-blend-mode: multiply; }
+.post > * { position: relative; z-index: 1; }
+.post > .layer, .layer { position: absolute !important; pointer-events: none; }
+
+/* ---- 크레파스 질감 유틸 (장식에만 사용!) ---- */
+.wax   { filter: url(#wax); }
+.wax-s { filter: url(#wax-stroke); }
+.rough { filter: url(#rough); }
+
+/* ---- 타이포 ---- */
+.display { font-family: var(--f-display); font-weight: 400; line-height: 1.22; letter-spacing: -0.01em; }
+.hand    { font-family: var(--f-hand); font-weight: 700; line-height: 1.2; }
+.mono    { font-family: var(--f-mono); font-weight: 500; }
+.t-hero  { font-size: var(--t-hero); }
+.t-h1 { font-size: var(--t-h1); } .t-h2 { font-size: var(--t-h2); } .t-h3 { font-size: var(--t-h3); }
+.body  { font-size: var(--t-body); line-height: 1.55; font-weight: 500; }
+.small { font-size: var(--t-small); line-height: 1.5; color: var(--ink-soft); font-weight: 500; }
+
+/* 크레파스 형광펜: 글자 뒤 하이라이트 (글자는 선명, 뒤 띠만 크레파스) */
+.hl { position: relative; display: inline-block; z-index: 0; white-space: nowrap; }
+.hl::after { content: ""; position: absolute; left: -10px; right: -10px; bottom: 0.02em; height: max(0.56em, 26px); z-index: -1;
+  background: var(--hl, var(--sun)); border-radius: 14px 8px 16px 10px; filter: url(#wax-stroke); transform: rotate(-1.2deg); }
+.hl.p::after { --hl: var(--p); }
+
+/* ---- 퀘스트 배지 (시리즈 표식) ---- */
+.quest-tag { display: inline-flex; align-items: center; gap: 18px; }
+.quest-tag .badge { width: 132px; height: 132px; position: relative; flex: none; }
+.quest-tag .badge svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.quest-tag .meta { display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.quest-tag .qname { font-family: var(--f-display); font-size: 40px; line-height: 1; color: var(--ink); }
+.quest-tag .qtype { font-family: var(--f-hand); font-weight: 700; font-size: 36px; line-height: 1; color: var(--ink-soft); }
+
+/* ---- 칩/라벨 ---- */
+.chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 24px 12px; border-radius: 999px;
+  font-family: var(--f-display); font-size: 30px; color: var(--ink); position: relative; isolation: isolate; }
+.chip::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--p); filter: url(#wax); z-index: -1; }
+
+/* ---- 카드 박스: 손그림 테두리 (테두리만 크레파스) ---- */
+.card { position: relative; padding: 44px 48px; isolation: isolate; }
+.card::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: var(--radius);
+  background: var(--white); border: var(--stroke) solid var(--p); filter: url(#wax); }
+.card.warm::before { background: var(--paper-warm); }
+.card.fill::before { background: var(--p); border-color: var(--p); }
+
+/* 코드/프롬프트 박스 */
+.prompt { position: relative; padding: 36px 40px; font-family: var(--f-mono); font-size: 30px; line-height: 1.6;
+  color: var(--ink); isolation: isolate; font-weight: 500; }
+.prompt::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 28px;
+  background: var(--paper-warm); border: 5px dashed var(--ink-faint); filter: url(#rough); }
+.prompt .ko { font-family: var(--f-body); font-weight: 600; }
+.prompt .label { display: block; font-family: var(--f-hand); font-weight: 700; font-size: 32px; color: var(--p-deep); margin-bottom: 8px; }
+
+/* 하단 푸터: 계정명 + 페이지 */
+.footer { position: absolute !important; left: var(--m-x); right: var(--m-x); bottom: 52px; display: flex;
+  justify-content: space-between; align-items: center; font-family: var(--f-hand); font-weight: 700; font-size: 34px; color: var(--ink-soft); }
+.footer .pg { font-family: var(--f-mono); font-size: 24px; font-weight: 600; letter-spacing: .06em; }
+.hl.thick::after { height: 0.72em; bottom: -0.04em; }

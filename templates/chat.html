@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/mock.css">
+<script src="assets/crayon.js"></script>
+<style>
+  /* 문제 제기(대화형) 카드: 배지 → 손글씨 키커 → 제목 → 채팅 말풍선 → 한 줄 결론 */
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .quest-tag .badge { width: 96px; height: 96px; }
+  .quest-tag .qname { font-size: 34px; }
+  .head .pin { width: 84px; height: 84px; }
+  .stage { margin-top: 32px; font-family: var(--f-hand); font-weight: 700; font-size: 42px; color: var(--p-deep); }
+  .title { font-size: 72px; line-height: 1.2; }
+  .chat { margin-top: 28px; display: flex; flex-direction: column; gap: 18px; }
+  .msg { display: flex; align-items: flex-end; gap: 16px; }
+  .msg.me { justify-content: flex-end; }
+  .who { flex: none; width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: var(--f-display); font-size: 30px; position: relative; isolation: isolate; }
+  .who::before { content: ""; position: absolute; inset: 0; border-radius: 50%; z-index: -1; filter: url(#wax); }
+  .me .who::before { background: var(--p); }
+  .ai .who::before { background: var(--ai); }
+  .bub { position: relative; max-width: 660px; padding: 20px 30px 22px; font-size: 34px; line-height: 1.5; font-weight: 600; isolation: isolate; }
+  .bub::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 30px; filter: url(#wax); }
+  .me .bub::before { background: var(--p); border-bottom-right-radius: 8px; }
+  .ai .bub::before { background: var(--white); border: 5px solid var(--ai); border-bottom-left-radius: 8px; }
+  .ai .bub { display: flex; align-items: center; gap: 24px; color: var(--ink-soft); font-weight: 500; font-size: 32px; }
+  .mini { flex: none; transform: scale(.3); transform-origin: top left; width: 90px; height: 168px; }
+  .loop { display: flex; align-items: center; gap: 12px; align-self: flex-end; font-family: var(--f-hand); font-weight: 700; font-size: 38px; color: var(--ink-soft); }
+  .loop svg { width: 56px; height: 56px; }
+  .punch { margin-top: 22px; }
+  .punch.card { padding: 26px 40px 28px; }
+  .punch.card::before { background: var(--paper-warm); border-color: var(--sun-deep); }
+  .punch .t { font-family: var(--f-display); font-size: 52px; line-height: 1.3; }
+  .note { margin-top: 14px; font-size: 28px; color: var(--ink-soft); font-weight: 500; }
+</style></head>
+<body data-series="talk">
+<div class="post">
+  <div class="head">
+    <div class="quest-tag">
+      <div class="badge" data-badge></div>
+      <div class="meta"><span class="qno">QUEST #<span data-no>01</span></span><span class="qname" data-series-name></span></div>
+    </div>
+    <div class="pin" data-icon="map" data-color="var(--ink-soft)" data-w="5"></div>
+  </div>
+
+  <div class="stage" data-field="stage">출발 전, 내 이야기</div>
+  <h1 class="display title" data-field="title">이름을 몰라서 생긴 일</h1>
+
+  <div class="chat">
+    <div class="msg me"><div class="bub" data-field="me1">"화면 아래에서 올라오는 창 있잖아,<br>반쯤만 올라오는 거"</div><div class="who">나</div></div>
+    <div class="msg ai"><div class="who">AI</div><div class="bub"><div class="mini" id="mini"></div><span data-field="ai1">(화면 가운데에<br>팝업을 띄워 옴)</span></div></div>
+    <div class="msg me"><div class="bub" data-field="me2">"아니 그게 아니라..."</div><div class="who">나</div></div>
+    <div class="loop" id="loop"><span data-field="loop">이걸 여러 번 반복...</span></div>
+  </div>
+
+  <div class="punch card"><div class="t" data-field="punch"><span class="hl">Bottom Sheet</span>라고<br>한 마디면 끝났을 일</div></div>
+  <p class="note" data-field="note">* 실제 겪은 일을 재구성한 장면이에요</p>
+
+  <div class="footer"><span data-field="handle">@crayon.sure</span><span class="pg" data-field="pg">02 / 09</span></div>
+</div>
+<script src="assets/mock.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const q = new URLSearchParams(location.search);
+    document.getElementById("mini").innerHTML = Mock.render(q.get("mock") || "modal");
+    document.getElementById("loop").insertAdjacentHTML("afterbegin",
+      `<svg viewBox="0 0 100 100" fill="none" stroke="var(--p-deep)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#wax-stroke)"><path d="M78 40a30 30 0 1 0 4 22"/><path d="M84 22l-4 20-20-4"/></svg>`);
+  });
+</script>
+</body></html>

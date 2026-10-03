@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/mock.css">
+<script src="assets/crayon.js"></script>
+<style>
+  /* UI 용어 카드 (미니 목업형): 진행 루트 → 영문 용어 + 발음 → 한 줄 뜻 → 특징 칩 → 목업 | 설명 vs 프롬프트 */
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .quest-tag .badge { width: 96px; height: 96px; }
+  .quest-tag .qname { font-size: 34px; }
+  .progress svg { width: 300px; height: 60px; overflow: visible; }
+  .stage { margin-top: 44px; font-family: var(--f-hand); font-weight: 700; font-size: 42px; color: var(--p-deep); }
+  .term { display: flex; align-items: baseline; gap: 24px; margin-top: 0; }
+  .term h1 { font-size: 104px; line-height: 1.12; }
+  .term .pron { font-family: var(--f-body); font-size: 38px; font-weight: 600; color: var(--ink-soft); }
+  .mean { margin-top: 14px; font-size: 38px; line-height: 1.5; font-weight: 600; }
+  .feats { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .feats .chip { font-size: 28px; padding: 8px 22px 10px; }
+  .feats .chip:nth-child(2)::before { background: var(--sun); }
+  .feats .chip:nth-child(3)::before { background: var(--paper-warm); border: 4px solid var(--p); }
+  .row { margin-top: 40px; display: grid; grid-template-columns: 340px 1fr; gap: 36px; align-items: center; }
+  .mockcol { display: flex; justify-content: center; align-items: center; height: 580px; }
+  .talk { display: flex; flex-direction: column; gap: 10px; }
+  .talk .lab { display: flex; align-items: center; gap: 8px; font-family: var(--f-hand); font-weight: 700; font-size: 34px; margin-bottom: 6px; }
+  .before { position: relative; padding: 26px 30px 28px; isolation: isolate; }
+  .before::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 28px;
+    background: var(--paper-warm); border: 5px dashed var(--ink-faint); filter: url(#rough); }
+  .before .lab { color: var(--ink-soft); }
+  .before p { font-size: 30px; line-height: 1.5; color: var(--ink-soft); font-weight: 500; }
+  .down { align-self: center; width: 60px; height: 60px; transform: rotate(90deg); }
+  .after.card { padding: 26px 30px 30px; }
+  .after .lab { color: var(--p-deep); }
+  .after p { font-size: 31px; line-height: 1.5; font-weight: 600; }
+  .after b { font-weight: 800; color: var(--p-deep); }
+  .mark { width: 36px; height: 36px; display: inline-block; }
+</style></head>
+<body data-series="talk">
+<div class="post">
+  <div class="head">
+    <div class="quest-tag">
+      <div class="badge" data-badge></div>
+      <div class="meta"><span class="qno">QUEST #<span data-no>01</span></span><span class="qname" data-series-name></span></div>
+    </div>
+    <div class="progress" id="progress" data-step="1" data-total="5"></div>
+  </div>
+
+  <div class="stage" data-field="stage">용어 ① 첫 번째 지점</div>
+  <div class="term"><h1 class="display" data-field="term">Modal</h1><span class="pron" data-field="pron">[모달]</span></div>
+  <p class="mean" data-field="mean">화면 가운데 뜨는 창이에요.</p>
+  <div class="feats" data-field="feats"><span class="chip">가운데</span><span class="chip">뒤가 어두워져요</span><span class="chip">닫아야 다음으로</span></div>
+
+  <div class="row">
+    <div class="mockcol" id="mockcol"></div>
+    <div class="talk">
+      <div class="before"><div class="lab"><span class="mark" data-icon="x" data-color="var(--ink-soft)" data-w="10"></span>이렇게 설명했었다</div>
+        <p data-field="before">"화면 가운데 창 하나 띄우고, 뒤는 회색으로 덮어서 못 누르게 해줘"</p></div>
+      <div class="down" data-icon="arrow" data-color="var(--p-deep)" data-w="8"></div>
+      <div class="after card"><div class="lab"><span class="mark" data-icon="star" data-color="var(--sun-deep)" data-w="8"></span>이렇게 말하면 된다</div>
+        <p data-field="after">"삭제 버튼을 누르면 확인용 <b>Modal</b>을 띄워줘"</p></div>
+    </div>
+  </div>
+
+  <div class="footer"><span data-field="handle">@crayon.sure</span><span class="pg" data-field="pg">03 / 09</span></div>
+</div>
+<script src="assets/mock.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const q = new URLSearchParams(location.search);
+    document.getElementById("mockcol").innerHTML = Mock.render(q.get("mock") || "modal");
+    const el = document.getElementById("progress");
+    const step = +(q.get("step") || el.dataset.step), total = +(q.get("total") || el.dataset.total);
+    const gap = 280 / (total - 1); let dots = "";
+    for (let i = 0; i < total; i++) {
+      const x = 10 + i * gap, on = i < step;
+      dots += `<circle cx="${x}" cy="30" r="${i === step - 1 ? 17 : 11}" fill="${on ? 'var(--p)' : 'var(--paper)'}" stroke="var(--p-deep)" stroke-width="4" filter="url(#wax-stroke)"/>`;
+    }
+    el.innerHTML = `<svg viewBox="0 0 300 60"><path d="M10 30 H290" stroke="var(--p-deep)" stroke-opacity=".55" stroke-width="6" stroke-dasharray="2 13" stroke-linecap="round"/>${dots}</svg>`;
+  });
+</script>
+</body></html>

@@ -1,0 +1,9 @@
+---
+description: 카드 코드는 src/posts, 스틸컷은 바탕화면 still_cuts
+alwaysApply: true
+---
+
+# 작업 위치
+
+- 카드 코드는 `src/posts/<slug>/`에서 작업한다. 저장소 루트의 `posts/`는 쓰지 않는다.
+- 스틸컷은 바탕화면 `/Users/eunchan-kim/Desktop/still_cuts/<slug>/`에 저장한다. `scripts/export.mjs`의 `outDir`이 그 경로다.
