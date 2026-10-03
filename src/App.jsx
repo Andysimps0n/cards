@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { Filters } from "./ui/Filters.jsx";
 import { cards as talk01 } from "./posts/ui-talk-01/cards.jsx";
 import { cards as talk02 } from "./posts/ui-talk-02-header-footer/cards.jsx";
+import { cards as talk03 } from "./posts/ui-talk-03-inputs/cards.jsx";
 
 const POSTS = {
   "ui-talk-01": talk01,
   "ui-talk-02-header-footer": talk02,
+  "ui-talk-03-inputs": talk03,
 };
 
 export function App() {
