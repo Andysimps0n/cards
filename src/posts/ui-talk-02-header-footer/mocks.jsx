@@ -55,61 +55,38 @@ export function WrongNav() {
   );
 }
 
-function MapNote({ className, main, sub, mainClass, subClass }) {
+/* 05장. Header 바로 아래 Breadcrumb 줄만 핑크로 강조합니다. */
+export function BreadcrumbMock() {
   return (
-    <div className={`pm-note ${className}`}>
-      <span className={mainClass}>{main}</span>
-      <span className={subClass}>{sub}</span>
-    </div>
-  );
-}
-
-/* 03장. 맨 위 Header와 맨 아래 Footer만 핑크로 표시합니다. */
-export function PageMap() {
-  return (
-    <div className="pm-pagemap">
-      <div className="pm-site pm-site-map">
-        <div className="pm-win">
-          <WindowTop />
-          <div className="pm-zone pm-map-head">
-            <Logo size="md" />
-            <span className="pm-grow" />
-            <span className="pm-nav-links">
-              <span className="pm-wbar pm-w46" />
-              <span className="pm-wbar pm-w46" />
-              <span className="pm-wbar pm-w46" />
-            </span>
-            <i className="pm-avatar pm-avatar-26" />
-          </div>
-          <div className="pm-dim pm-map-body">
-            <div className="pm-peach" />
-            <span className="pm-ln pm-w80" />
-            <span className="pm-ln pm-w60" />
-            <div className="pm-cards3"><i /><i /><i /></div>
-            <span className="pm-ln" />
-            <span className="pm-ln pm-w60" />
-          </div>
-          <div className="pm-zone pm-map-foot">
-            <div className="pm-foot-col"><span className="pm-wbar pm-w80" /><span className="pm-wbar pm-w60" /><span className="pm-wbar pm-w70" /></div>
-            <div className="pm-foot-col"><span className="pm-wbar pm-w80" /><span className="pm-wbar pm-w60" /><span className="pm-wbar pm-w70" /></div>
-            <div className="pm-foot-col"><span className="pm-wbar pm-w80" /><span className="pm-wbar pm-w60" /><span className="pm-wbar pm-w70" /></div>
-          </div>
+    <div className="pm-site pm-site-side">
+      <div className="pm-win">
+        <WindowTop />
+        <div className="pm-dim pm-bc-head">
+          <i className="pm-bc-logo" />
+          <span className="pm-bar" />
+          <span className="pm-grow" />
+          <span className="pm-ln" />
+          <span className="pm-ln" />
+        </div>
+        <div className="pm-zone pm-bc-crumb">
+          <span className="pm-bc-link">홈</span>
+          <span className="pm-bc-sep">{">"}</span>
+          <span className="pm-bc-link">상의</span>
+          <span className="pm-bc-sep">{">"}</span>
+          <span className="pm-bc-now">니트</span>
+        </div>
+        <div className="pm-dim pm-bc-body">
+          <div className="pm-peach pm-peach-170" />
+          <span className="pm-bar pm-bar-120" />
+          <span className="pm-ln pm-w60" />
+          <span className="pm-bc-btn" />
         </div>
       </div>
-      {/* 점선 path에 wax-stroke를 걸면 짧은 대시가 사라져서, 같은 자리에 점을 찍습니다. */}
-      <svg className="pm-spine" viewBox="0 0 904 600" aria-hidden="true">
-        {Array.from({ length: 16 }, (_, i) => (
-          <circle key={i} cx="592" cy={116 + i * 26} r="4.5" fill="var(--p-deep)" opacity="0.7" filter="url(#wax)" />
-        ))}
-      </svg>
-      <MapNote className="pm-note-header" main="← Header" sub="머리" mainClass="pm-note-lg" subClass="pm-note-md" />
-      <MapNote className="pm-note-body" main="← 본문" sub="페이지마다 달라요" mainClass="pm-note-faint" subClass="pm-note-xs" />
-      <MapNote className="pm-note-footer" main="← Footer" sub="발" mainClass="pm-note-lg" subClass="pm-note-md" />
     </div>
   );
 }
 
-/* 04장. Header 띠를 강조하고, 로고를 누르면 홈으로 간다는 메모를 붙입니다. */
+/* 03장. Header 띠를 강조하고, 로고를 누르면 홈으로 간다는 메모를 붙입니다. */
 export function HeaderMock() {
   return (
     <div className="pm-site pm-site-side">
@@ -149,7 +126,7 @@ export function HeaderMock() {
   );
 }
 
-/* 05장. 데스크톱 헤더 ①~④, 모바일 헤더 ⑤. */
+/* 04장. 데스크톱 헤더 ①~④, 모바일 헤더 ⑤. */
 export function HeaderParts() {
   return (
     <div className="pm-parts">

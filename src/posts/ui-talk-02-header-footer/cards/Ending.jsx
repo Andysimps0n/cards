@@ -1,6 +1,6 @@
 import { Post } from "../../../ui/Post.jsx";
 
-const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "햄버거 메뉴"];
+const LOOT = ["Header", "Footer", "GNB", "Sticky Header", "Breadcrumb"];
 
 export function Ending() {
   return (
@@ -57,8 +57,8 @@ export function Ending() {
             </g>
           </svg>
           <div className="hf-ending-label">다음 편</div>
-          <div className="hf-ending-next-title">Hero Section 편</div>
-          <div className="hf-ending-desc">홈페이지 첫 화면의 큰 그림과 문구,<br />그 구역의 이름과 역할</div>
+          <div className="hf-ending-next-title">입력하는 UI 편</div>
+          <div className="hf-ending-desc">Dropdown, Toggle, Checkbox처럼<br />고르고 입력하는 UI</div>
         </div>
       </div>
 
