@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="ko" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>AI가 알아먹는 UI 용어집 3탄 · 입력하는 UI</title>
+    <link rel="preload" href="fonts/Jua-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="fonts/Gaegu-Bold.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <script src="vendor/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <filter id="wax" x="-15%" y="-15%" width="130%" height="130%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="4" result="warp" />
+          <feDisplacementMap in="SourceGraphic" in2="warp" scale="9" xChannelSelector="R" yChannelSelector="G" result="rough" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.9 0.35" numOctaves="2" seed="11" result="grain" />
+          <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.6 2.05" result="mask" />
+          <feComposite in="rough" in2="mask" operator="in" />
+        </filter>
+        <filter id="wax-stroke" x="-15%" y="-15%" width="130%" height="130%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="2" result="warp" />
+          <feDisplacementMap in="SourceGraphic" in2="warp" scale="5" xChannelSelector="R" yChannelSelector="G" result="rough" />
+          <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="1" seed="5" result="grain" />
+          <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.95" result="mask" />
+          <feComposite in="rough" in2="mask" operator="in" />
+        </filter>
+        <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="8" result="warp" />
+          <feDisplacementMap in="SourceGraphic" in2="warp" scale="5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id="paper-grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" seed="1" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.47  0 0 0 0 0.38  0 0 0 0.32 0" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="39"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="paper-dots"></div>
+      <svg class="grain" width="1080" height="1920"><rect width="100%" height="100%" filter="url(#paper-grain)" /></svg>
+
+      <!-- 01 커버 0–4 -->
+      <section id="scene-cover" class="clip scene" data-start="0" data-duration="4" data-track-index="1">
+        <div class="scene-inner">
+          <div class="cover-blob"></div>
+          <div class="cover-copy">
+            <h1 class="display cover-title">AI가 알아먹는<br /><span class="hl">UI 용어집</span> 3탄</h1>
+            <p class="cover-sub">AI한테 설명하다 지친<br />나를 위한 입력 UI 5개</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 채팅 4–9 -->
+      <section id="scene-chat" class="clip scene" data-start="4" data-duration="5" data-track-index="1">
+        <div class="scene-inner">
+          <h1 class="display chat-title"><span>이런 상황이 답답하시죠,,</span></h1>
+          <div class="chat-thread">
+            <div class="chat-msg chat-me">
+              <div class="chat-bub">누르면 밑으로 목록 나오는<br />박스 하나 만들어줘</div>
+              <div class="chat-who">나</div>
+            </div>
+            <div class="chat-msg chat-ai">
+              <div class="chat-who">AI</div>
+              <div class="chat-bub">
+                <div class="chat-mini" data-mock="radio"></div>
+                <span>(동그라미 선택지를<br />줄줄이 늘어놓아 옴)</span>
+              </div>
+            </div>
+            <div class="chat-msg chat-me">
+              <div class="chat-bub">알림은 옆으로 밀리는<br />동그란 버튼으로 해줘</div>
+              <div class="chat-who">나</div>
+            </div>
+            <div class="chat-msg chat-ai">
+              <div class="chat-who">AI</div>
+              <div class="chat-bub">
+                <div class="chat-mini" data-mock="checkbox"></div>
+                <span>(체크 표시 네모를<br />넣어 옴)</span>
+              </div>
+            </div>
+            <div class="chat-loop">
+              <svg viewBox="0 0 100 100" fill="none" stroke="var(--p-deep)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#wax-stroke)">
+                <path d="M78 40a30 30 0 1 0 4 22" />
+                <path d="M84 22l-4 20-20-4" />
+              </svg>
+              <span>이걸 여러 번 반복...</span>
+            </div>
+            <div class="chat-msg chat-me">
+              <div class="chat-bub">아니 그게 아니라,,</div>
+              <div class="chat-who">나</div>
+            </div>
+          </div>
+          <div class="card chat-punch">
+            <div class="chat-punch-text"><span class="hl">Dropdown, Toggle</span>이라고<br />한 마디면 끝났을 일</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Dropdown 9–13 -->
+      <section id="scene-dropdown" class="clip scene" data-start="9" data-duration="4" data-track-index="1">
+        <div class="scene-inner">
+          <div class="term-stage">UI 용어 ①</div>
+          <div class="term-name"><h1 class="display">Dropdown</h1><span class="term-pron">[드롭다운]</span></div>
+          <p class="term-mean">누르면 목록이 펼쳐지고 하나를 고르는 칸이에요.</p>
+          <p class="term-when">고를 게 많아서 화면에 다 펼치기 어려울 때 써요.</p>
+          <div class="term-mock" data-mock="dropdown"></div>
+          <div class="card term-tip">
+            <span class="tip-label">✏️ 팁</span>
+            <span class="tip-text">고를 게 몇 개뿐이면 다 펼쳐 둔 <b>Radio Button</b>이 더 편할 수 있어요.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Toggle 13–17 -->
+      <section id="scene-toggle" class="clip scene" data-start="13" data-duration="4" data-track-index="1">
+        <div class="scene-inner">
+          <div class="term-stage">UI 용어 ②</div>
+          <div class="term-name"><h1 class="display">Toggle</h1><span class="term-pron">[토글]</span></div>
+          <p class="term-mean">켜짐과 꺼짐을 바로 바꾸는 스위치예요.</p>
+          <p class="term-when">알림, 다크 모드처럼 누르는 즉시 적용되는 설정에 써요.</p>
+          <div class="term-mock" data-mock="toggle"></div>
+          <div class="card term-tip">
+            <span class="tip-label">✏️ 팁</span>
+            <span class="tip-text"><b>Toggle</b>은 누르면 바로 적용, <b>Checkbox</b>는 저장을 눌러야 적용돼요.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 Checkbox 17–21 -->
+      <section id="scene-checkbox" class="clip scene" data-start="17" data-duration="4" data-track-index="1">
+        <div class="scene-inner">
+          <div class="term-stage">UI 용어 ③</div>
+          <div class="term-name"><h1 class="display">Checkbox</h1><span class="term-pron">[체크박스]</span></div>
+          <p class="term-mean">여러 개를 동시에 고르는 네모 칸이에요.</p>
+          <p class="term-when">관심사, 약관 동의처럼 하나 이상 고를 때 써요.</p>
+          <div class="term-mock" data-mock="checkbox"></div>
+          <div class="card term-tip">
+            <span class="tip-label">✏️ 팁</span>
+            <span class="tip-text">여러 개 고르면 <b>Checkbox</b>, 하나만 고르면 <b>Radio Button</b>이에요.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 Radio Button 21–25 -->
+      <section id="scene-radio" class="clip scene" data-start="21" data-duration="4" data-track-index="1">
+        <div class="scene-inner">
+          <div class="term-stage">UI 용어 ④</div>
+          <div class="term-name"><h1 class="display">Radio Button</h1><span class="term-pron">[라디오 버튼]</span></div>
+          <p class="term-mean">여러 개 중 딱 하나만 고르는 동그라미예요.</p>
+          <p class="term-when">배송 방법처럼 하나만 골라야 할 때 써요.</p>
+          <div class="term-mock" data-mock="radio"></div>
+          <div class="card term-tip">
+            <span class="tip-label">✏️ 팁</span>
+            <span class="tip-text">동그라미는 하나만, 네모는 여러 개. 모양으로 기억해요.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 Date Picker 25–29 -->
+      <section id="scene-datepicker" class="clip scene" data-start="25" data-duration="4" data-track-index="1">
+        <div class="scene-inner">
+          <div class="term-stage">UI 용어 ⑤</div>
+          <div class="term-name"><h1 class="display">Date Picker</h1><span class="term-pron">[데이트 피커]</span></div>
+          <p class="term-mean">달력을 띄워 날짜를 고르는 입력칸이에요.</p>
+          <p class="term-when">예약일, 생일처럼 날짜를 받을 때 써요.</p>
+          <div class="term-mock" data-mock="datepicker"></div>
+          <div class="card term-tip">
+            <span class="tip-label">✏️ 팁</span>
+            <span class="tip-text">기간을 고를 땐 "시작일과 종료일을 <b>Date Picker</b>로"라고 말해요.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 정리 29–34 -->
+      <section id="scene-summary" class="clip scene" data-start="29" data-duration="5" data-track-index="1">
+        <div class="scene-inner">
+          <div class="summary-stage">한 눈에 정리</div>
+          <h1 class="display summary-title">헷갈릴 땐 <span class="hl">이 표</span> 하나</h1>
+          <div class="summary-save">저장 필수!</div>
+          <div class="card summary-table">
+            <div class="summary-row summary-head"><span>이름</span><span>기능</span></div>
+            <div class="summary-row"><div class="summary-name">Dropdown<small>드롭다운</small></div><div class="summary-cell">누르면 목록이 펼쳐지고 하나를 골라요.</div></div>
+            <div class="summary-row"><div class="summary-name">Toggle<small>토글</small></div><div class="summary-cell">켜고 끄면 바로 적용돼요.</div></div>
+            <div class="summary-row"><div class="summary-name">Checkbox<small>체크박스</small></div><div class="summary-cell">여러 개를 고를 수 있어요. 보통 저장해야 적용돼요.</div></div>
+            <div class="summary-row"><div class="summary-name">Radio Button<small>라디오 버튼</small></div><div class="summary-cell">여러 개 중 딱 하나만 골라요.</div></div>
+            <div class="summary-row"><div class="summary-name">Date Picker<small>데이트 피커</small></div><div class="summary-cell">달력을 띄워 날짜를 골라요.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09 엔딩 34–39 -->
+      <section id="scene-ending" class="clip scene" data-start="34" data-duration="5" data-track-index="1">
+        <div class="scene-inner">
+          <div class="ending-clear">
+            <div class="ending-stamp">
+              <svg viewBox="0 0 210 210">
+                <circle cx="105" cy="105" r="92" fill="var(--sun)" filter="url(#wax)" />
+                <circle cx="105" cy="105" r="78" fill="none" stroke="var(--sun-deep)" stroke-width="5" filter="url(#wax-stroke)" />
+              </svg>
+              <span>오늘 배운<br />단어 5개</span>
+            </div>
+            <div>
+              <h1 class="display ending-title">오늘의 정리</h1>
+              <p class="ending-sub">저장해두고<br />AI한테 써먹어보세요</p>
+            </div>
+          </div>
+          <div class="ending-loot">
+            <h3>✦ 이제 이렇게 말해요</h3>
+            <ul>
+              <li><span class="chip">Dropdown</span></li>
+              <li><span class="chip">Toggle</span></li>
+              <li><span class="chip">Checkbox</span></li>
+              <li><span class="chip">Radio Button</span></li>
+              <li><span class="chip">Date Picker</span></li>
+            </ul>
+          </div>
+          <div class="ending-next">
+            <div class="card warm">
+              <div class="ending-label">다음 편</div>
+              <div class="ending-next-title">넘기고 펼치는 UI 편</div>
+              <div class="ending-desc">Tab, Accordion, Carousel처럼<br />넘기고 펼쳐서 보는 UI</div>
+            </div>
+          </div>
+          <div class="ending-cta">
+            <span class="chip">🔖 저장하고 써먹기</span>
+            <span class="chip alt">👀 팔로우하고 다음 편 보기</span>
+          </div>
+          <div class="ending-note">다음 편에서 만나요!</div>
+          <div class="ending-handle">@crayon.sure</div>
+        </div>
+      </section>
+
+      <!-- 로어서드: 장면마다 확정 문구 -->
+      <aside id="lt-cover" class="clip lower-third" data-start="0" data-duration="4" data-track-index="2">
+        <div class="lt-kicker">속보</div>
+        <div class="lt-head">AI가 알아먹는 UI 용어집 3탄</div>
+        <div class="lt-sub">AI한테 설명하다 지친 나를 위한 입력 UI 5개</div>
+      </aside>
+      <aside id="lt-chat" class="clip lower-third" data-start="4" data-duration="5" data-track-index="2">
+        <div class="lt-kicker">현장</div>
+        <div class="lt-head">이런 상황이 답답하시죠,,</div>
+        <div class="lt-sub">Dropdown, Toggle이라고 한 마디면 끝났을 일</div>
+      </aside>
+      <aside id="lt-dropdown" class="clip lower-third" data-start="9" data-duration="4" data-track-index="2">
+        <div class="lt-kicker">UI 용어 ①</div>
+        <div class="lt-head">Dropdown [드롭다운]</div>
+        <div class="lt-sub">누르면 목록이 펼쳐지고 하나를 고르는 칸이에요.</div>
+      </aside>
+      <aside id="lt-toggle" class="clip lower-third" data-start="13" data-duration="4" data-track-index="2">
+        <div class="lt-kicker">UI 용어 ②</div>
+        <div class="lt-head">Toggle [토글]</div>
+        <div class="lt-sub">켜짐과 꺼짐을 바로 바꾸는 스위치예요.</div>
+      </aside>
+      <aside id="lt-checkbox" class="clip lower-third" data-start="17" data-duration="4" data-track-index="2">
+        <div class="lt-kicker">UI 용어 ③</div>
+        <div class="lt-head">Checkbox [체크박스]</div>
+        <div class="lt-sub">여러 개를 동시에 고르는 네모 칸이에요.</div>
+      </aside>
+      <aside id="lt-radio" class="clip lower-third" data-start="21" data-duration="4" data-track-index="2">
+        <div class="lt-kicker">UI 용어 ④</div>
+        <div class="lt-head">Radio Button [라디오 버튼]</div>
+        <div class="lt-sub">여러 개 중 딱 하나만 고르는 동그라미예요.</div>
+      </aside>
+      <aside id="lt-datepicker" class="clip lower-third" data-start="25" data-duration="4" data-track-index="2">
+        <div class="lt-kicker">UI 용어 ⑤</div>
+        <div class="lt-head">Date Picker [데이트 피커]</div>
+        <div class="lt-sub">달력을 띄워 날짜를 고르는 입력칸이에요.</div>
+      </aside>
+      <aside id="lt-summary" class="clip lower-third" data-start="29" data-duration="5" data-track-index="2">
+        <div class="lt-kicker">한 눈에 정리</div>
+        <div class="lt-head">헷갈릴 땐 이 표 하나</div>
+        <div class="lt-sub">저장 필수!</div>
+      </aside>
+      <aside id="lt-ending" class="clip lower-third" data-start="34" data-duration="5" data-track-index="2">
+        <div class="lt-kicker">오늘의 정리</div>
+        <div class="lt-head">다음 편 넘기고 펼치는 UI 편</div>
+        <div class="lt-sub">@crayon.sure</div>
+      </aside>
+
+      <!-- 상단 뉴스 바 + 하단 티커 (전 구간) -->
+      <header id="news-bar" class="clip news-bar" data-start="0" data-duration="39" data-track-index="3">
+        <span class="news-live">속보</span>
+        <span class="news-channel">UI 용어집 뉴스</span>
+        <span class="news-meta">3탄 · 입력하는 UI</span>
+      </header>
+      <footer id="ticker" class="clip ticker" data-start="0" data-duration="39" data-track-index="3">
+        <span class="ticker-label">용어</span>
+        <div class="ticker-window">
+          <div id="ticker-track" class="ticker-track">
+            <div class="ticker-set">
+              <span class="ticker-item">Dropdown</span>
+              <span class="ticker-item">Toggle</span>
+              <span class="ticker-item">Checkbox</span>
+              <span class="ticker-item">Radio Button</span>
+              <span class="ticker-item">Date Picker</span>
+            </div>
+            <div class="ticker-set" aria-hidden="true">
+              <span class="ticker-item">Dropdown</span>
+              <span class="ticker-item">Toggle</span>
+              <span class="ticker-item">Checkbox</span>
+              <span class="ticker-item">Radio Button</span>
+              <span class="ticker-item">Date Picker</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <div id="wipe" class="clip wipe" data-start="0" data-duration="39" data-track-index="4"></div>
+    </div>
+
+    <script>
+      /* 카드 mocks.jsx와 같은 목업을 여러 장면에 넣기 위해 여기서 한 번만 만듭니다. */
+      function phone(inner) {
+        return (
+          '<div class="phone"><div class="scr"><div class="im-screen">' +
+          inner +
+          '</div></div><div class="notch"></div></div>'
+        );
+      }
+
+      function dayCells() {
+        const pad = 4;
+        const days = 31;
+        const picked = 17;
+        let html = "";
+        for (let i = 0; i < 35; i += 1) {
+          const day = i - pad + 1;
+          const inMonth = day >= 1 && day <= days;
+          if (day === picked) {
+            html += '<span class="im-day im-day-on">' + picked + "</span>";
+          } else {
+            html += '<span class="im-day">' + (inMonth ? "<i></i>" : "") + "</span>";
+          }
+        }
+        return html;
+      }
+
+      const MOCKS = {
+        dropdown: phone(
+          '<span class="im-ttl"></span>' +
+          '<span class="im-ln im-w80"></span>' +
+          '<span class="im-ln im-w90"></span>' +
+          '<div class="im-select-wrap">' +
+            '<div class="im-select"><span class="im-txt">서울</span><span class="im-caret">▼</span></div>' +
+            '<svg class="cursor" style="right:-8px;top:16px" viewBox="0 0 44 54">' +
+              '<path d="M4 3 L4 42 L14 33 L21 50 L28 47 L21 30 L35 30 Z" fill="var(--white)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round" />' +
+            "</svg>" +
+          "</div>" +
+          '<div class="im-list">' +
+            '<div class="im-opt"><span class="im-ln im-w70"></span></div>' +
+            '<div class="im-opt im-opt-on"><span class="im-ln im-w60"></span><span class="im-txt">✓</span></div>' +
+            '<div class="im-opt"><span class="im-ln im-w75"></span></div>' +
+            '<div class="im-opt"><span class="im-ln im-w50"></span></div>' +
+          "</div>" +
+          '<span class="im-ln im-fade"></span>' +
+          '<span class="im-ln im-w80 im-fade"></span>'
+        ),
+        toggle: phone(
+          '<span class="im-ttl"></span>' +
+          '<div class="im-set">' +
+            '<div class="im-set-row"><span class="im-txt">알림</span>' +
+              '<div class="im-toggle-hit"><div class="im-toggle im-toggle-on"><span class="im-knob"></span></div><span class="ping im-toggle-ping"></span></div>' +
+            "</div>" +
+            '<div class="im-set-row"><span class="im-txt">다크 모드</span><div class="im-toggle"><span class="im-knob"></span></div></div>' +
+            '<div class="im-set-row"><span class="im-ln im-w90"></span><div class="im-toggle"><span class="im-knob"></span></div></div>' +
+          "</div>"
+        ),
+        checkbox: phone(
+          '<span class="im-ttl"></span>' +
+          '<span class="im-txt im-txt-22">관심 분야</span>' +
+          '<div class="im-choice"><span class="im-check im-check-on">✓</span><span class="im-ln"></span></div>' +
+          '<div class="im-choice"><span class="im-check"></span><span class="im-ln"></span></div>' +
+          '<div class="im-choice"><span class="im-check im-check-on">✓</span><span class="im-ln"></span></div>' +
+          '<div class="im-choice"><span class="im-check"></span><span class="im-ln"></span></div>' +
+          '<div class="im-save">저장</div>'
+        ),
+        radio: phone(
+          '<span class="im-ttl"></span>' +
+          '<span class="im-txt im-txt-22">배송 방법</span>' +
+          '<div class="im-choice im-choice-radio"><span class="im-radio"></span><span class="im-ln"></span></div>' +
+          '<div class="im-choice im-choice-radio im-radio-on"><span class="im-radio im-radio-sel"></span><span class="im-ln"></span></div>' +
+          '<div class="im-choice im-choice-radio"><span class="im-radio"></span><span class="im-ln"></span></div>' +
+          '<div class="im-btnbar"></div>'
+        ),
+        datepicker: phone(
+          '<span class="im-ttl"></span>' +
+          '<div class="im-select"><span class="im-txt">2026. 10. 17</span><span class="im-cal-ico"></span></div>' +
+          '<div class="im-cal">' +
+            '<div class="im-cal-head"><span>‹</span><span class="im-txt im-txt-22">2026년 10월</span><span>›</span></div>' +
+            '<div class="im-cal-grid">' + dayCells() + "</div>" +
+          "</div>" +
+          '<span class="im-ln im-fade"></span>'
+        ),
+      };
+
+      document.querySelectorAll("[data-mock]").forEach((node) => {
+        const kind = node.getAttribute("data-mock");
+        node.innerHTML = MOCKS[kind] || "";
+      });
+
+      const tl = gsap.timeline({ paused: true });
+
+      function enter(selector, time) {
+        tl.fromTo(
+          selector,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+          time,
+        );
+      }
+
+      enter("#scene-cover .scene-inner", 0);
+      enter("#lt-cover", 0.05);
+      enter("#scene-chat .scene-inner", 4);
+      enter("#lt-chat", 4.05);
+      enter("#scene-dropdown .scene-inner", 9);
+      enter("#lt-dropdown", 9.05);
+      enter("#scene-toggle .scene-inner", 13);
+      enter("#lt-toggle", 13.05);
+      enter("#scene-checkbox .scene-inner", 17);
+      enter("#lt-checkbox", 17.05);
+      enter("#scene-radio .scene-inner", 21);
+      enter("#lt-radio", 21.05);
+      enter("#scene-datepicker .scene-inner", 25);
+      enter("#lt-datepicker", 25.05);
+      enter("#scene-summary .scene-inner", 29);
+      enter("#lt-summary", 29.05);
+      enter("#scene-ending .scene-inner", 34);
+      enter("#lt-ending", 34.05);
+
+      tl.fromTo("#news-bar", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0);
+      tl.fromTo("#ticker", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0);
+
+      /* 두 세트가 이어져 있어서 -50%면 한 바퀴입니다. */
+      tl.fromTo(
+        "#ticker-track",
+        { xPercent: 0 },
+        { xPercent: -50, duration: 16, ease: "none", repeat: 2 },
+        0,
+      );
+
+      const cuts = [4, 9, 13, 17, 21, 25, 29, 34];
+      tl.set("#wipe", { yPercent: -100, opacity: 1 }, 0);
+      cuts.forEach((t) => {
+        tl.fromTo("#wipe", { yPercent: -100 }, { yPercent: 0, duration: 0.16, ease: "power2.in" }, t - 0.16);
+        tl.to("#wipe", { yPercent: 100, duration: 0.16, ease: "power2.out" }, t);
+      });
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines.main = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
