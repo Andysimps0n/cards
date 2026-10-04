@@ -145,6 +145,7 @@
 .in-ending-next .card { padding: 40px 48px; }
 .in-ending-label { font-family: var(--f-hand); font-weight: 700; font-size: 34px; color: var(--p-deep); }
 .in-ending-next-title { font-family: var(--f-display); font-size: 56px; margin-top: 10px; line-height: 1.25; }
+.in-ending-desc { margin-top: 10px; font-size: 32px; color: var(--ink-soft); font-weight: 500; line-height: 1.45; }
 .in-ending-pencil { position: absolute; right: 40px; top: 36px; width: 84px; height: 84px; }
 .in-ending-cta {
   position: absolute !important; left: var(--m-x); bottom: 150px;

@@ -6,5 +6,6 @@ import "./styles/mock.css";
 import "./posts/ui-talk-01/cards.css";
 import "./posts/ui-talk-02-header-footer/cards.css";
 import "./posts/ui-talk-03-inputs/cards.css";
+import "./posts/ui-talk-04-swipe-expand/cards.css";
 
 createRoot(document.getElementById("root")).render(<App />);
