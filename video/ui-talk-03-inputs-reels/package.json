@@ -1,0 +1,13 @@
+{
+  "name": "ui-talk-03-inputs-reels",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.121 preview",
+    "check": "npx --yes hyperframes@0.8.121 check",
+    "lint": "npx --yes hyperframes@0.8.121 lint",
+    "snapshot": "npx --yes hyperframes@0.8.121 snapshot --at 1.2,6.2,11,19,31,36.2 --no-end -o snapshots",
+    "render": "npx --yes hyperframes@0.8.121 render --fps 30 --output out/reels.mp4",
+    "publish": "npx --yes hyperframes@0.8.121 publish"
+  }
+}
