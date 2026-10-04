@@ -84,45 +84,30 @@ export function FaqMock() {
   return <PageZones highlight="faq" />;
 }
 
-/* 02장. Hero를 시켰는데 맨 위에 가로 띠가 온 화면입니다. */
+/* 02장. 말풍선 칸(66×124)에 맞춰 직접 그립니다. 0.22배로 줄이면 띠와 버튼이 안 보여요. */
 export function WrongBannerMock() {
   return (
-    <div className="phone">
-      <div className="scr">
-        <div className="app">
-          <div className="zm-zone zm-phone-banner">
-            <span className="zm-wbar zm-w80" />
-            <span className="zm-ask">?</span>
-          </div>
-          <div className="hero" />
-          <div className="ln m" />
-          <div className="ln s" />
-          <div className="cards"><i /><i /></div>
-        </div>
+    <div className="zm-mini">
+      <div className="zm-mini-band">
+        <span className="zm-mini-ask">?</span>
       </div>
-      <div className="notch" />
+      <span className="zm-mini-ln" />
+      <span className="zm-mini-ln zm-mini-w60" />
+      <div className="zm-mini-cards"><i /><i /></div>
     </div>
   );
 }
 
-/* 02장. CTA를 시켰는데 구석에 작은 버튼이 온 화면입니다. */
 export function TinyButtonMock() {
   return (
-    <div className="phone">
-      <div className="scr">
-        <div className="app">
-          <div className="zm-phone-bar" />
-          <div className="hero" />
-          <div className="ln m" />
-          <div className="ln s" />
-          <div className="cards"><i /><i /></div>
-          <div className="zm-tiny-wrap">
-            <span className="zm-tiny-btn">시작</span>
-            <span className="zm-ask">?</span>
-          </div>
-        </div>
+    <div className="zm-mini">
+      <span className="zm-mini-ln zm-mini-w70" />
+      <div className="zm-mini-peach" />
+      <span className="zm-mini-ln" />
+      <div className="zm-mini-tiny">
+        <span className="zm-mini-btn" />
+        <span className="zm-mini-ask">?</span>
       </div>
-      <div className="notch" />
     </div>
   );
 }

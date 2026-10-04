@@ -22,7 +22,7 @@ export function Chat() {
         <div className="zn-chat-msg zn-chat-ai">
           <div className="zn-chat-who">AI</div>
           <div className="zn-chat-bub">
-            <div className="zn-chat-mini"><WrongBannerMock /></div>
+            <div className="zn-chat-fig"><WrongBannerMock /></div>
             <span>(가로 띠 광고를<br />넣어 옴)</span>
           </div>
         </div>
@@ -33,7 +33,7 @@ export function Chat() {
         <div className="zn-chat-msg zn-chat-ai">
           <div className="zn-chat-who">AI</div>
           <div className="zn-chat-bub">
-            <div className="zn-chat-mini"><TinyButtonMock /></div>
+            <div className="zn-chat-fig"><TinyButtonMock /></div>
             <span>(작은 버튼을<br />구석에 넣어 옴)</span>
           </div>
         </div>

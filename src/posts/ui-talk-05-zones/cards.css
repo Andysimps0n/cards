@@ -53,6 +53,7 @@
   color: var(--ink-soft); font-weight: 500; font-size: 28px;
 }
 .zn-chat-mini { flex: none; transform: scale(.22); transform-origin: top left; width: 66px; height: 124px; }
+.zn-chat-fig { flex: none; width: 66px; height: 124px; }
 .zn-chat-loop {
   display: flex; align-items: center; gap: 8px; align-self: flex-end;
   font-family: var(--f-hand); font-weight: 700; font-size: 32px; color: var(--ink-soft);
@@ -67,6 +68,7 @@
 .zn-stage { margin-top: 44px; font-family: var(--f-hand); font-weight: 700; font-size: 42px; color: var(--p-deep); }
 .zn-name { display: flex; align-items: baseline; gap: 24px; margin-top: 0; }
 .zn-name-wrap { flex-wrap: wrap; }
+.zn-name-wrap .zn-pron { flex-basis: 100%; }
 .zn-name h1 { font-size: 104px; line-height: 1.12; }
 .zn-pron { font-family: var(--f-body); font-size: 38px; font-weight: 600; color: var(--ink-soft); }
 .zn-mean { margin-top: 14px; font-size: 38px; line-height: 1.5; font-weight: 600; }
@@ -180,7 +182,7 @@
   content: ""; position: absolute; inset: 4px; border-radius: 10px;
   border: 3px dashed var(--p-deep); filter: url(#wax-stroke); pointer-events: none;
 }
-.zm-dim { opacity: .45; flex: none; }
+.zm-dim { opacity: .72; flex: none; }
 .zm-ln { display: block; height: 8px; border-radius: 4px; background: var(--paper-line); width: 100%; }
 .zm-w80 { width: 80%; }
 .zm-w70 { width: 70%; }
@@ -204,18 +206,20 @@
 }
 
 .zm-hero {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 6px; padding: 8px 10px; height: 72px;
+  display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end;
+  gap: 6px; padding: 8px 10px; height: 92px;
 }
-.zm-on-hero .zm-hero { height: 110px; }
+.zm-on-hero .zm-hero { height: 156px; }
 .zm-hero-img {
-  width: 100%; flex: 1; min-height: 28px; border-radius: 10px; background: var(--peach);
+  width: 100%; flex: 1; min-height: 36px; border-radius: 10px; background: var(--peach);
 }
-.zm-zone.zm-hero .zm-hero-img { background: color-mix(in srgb, var(--peach) 70%, var(--white)); }
+.zm-zone.zm-hero { background: var(--p); }
+.zm-zone.zm-hero .zm-hero-img { background: var(--peach); }
 .zm-hero-msg {
   font-family: var(--f-body); font-weight: 700; font-size: 20px; color: var(--ink);
-  line-height: 1.2; flex: none;
+  line-height: 1.2; flex: none; text-align: center;
 }
+.zm-zone.zm-hero .zm-hero-msg { color: var(--ink); }
 
 .zm-cta {
   display: flex; align-items: center; justify-content: center;
@@ -235,14 +239,16 @@
 .zm-on-grid .zm-grid { padding: 10px; }
 .zm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .zm-cards i {
-  display: block; height: 36px; border-radius: 10px;
+  display: block; height: 40px; border-radius: 10px;
   background: var(--paper-warm); border: 2px solid var(--paper-line);
 }
-.zm-on-grid .zm-cards i { height: 44px; background: var(--white); border-color: var(--p-deep); }
+.zm-on-grid .zm-cards i { height: 46px; background: var(--white); border-color: var(--p-deep); }
 
 .zm-banner {
   height: 28px; display: flex; align-items: center; justify-content: center; padding: 0 10px;
+  background: var(--paper-warm);
 }
+.zm-zone.zm-banner { background: var(--p); }
 .zm-on-banner .zm-banner { height: 40px; }
 .zm-banner-txt {
   font-family: var(--f-body); font-weight: 700; font-size: 20px; color: var(--ink); line-height: 1;
@@ -260,25 +266,32 @@
 .zm-zone.zm-faq .zm-ln { background: var(--white); }
 .zm-zone.zm-faq .zm-plus { color: var(--p-deep); }
 
-/* ----- mocks: 채팅용 폰 ----- */
-.zm-phone-banner {
-  height: 46px; display: flex; align-items: center; padding: 0 54px 0 14px;
+/* ----- mocks: 채팅용 미니 그림 (66×124, 축소하지 않음) ----- */
+.zm-mini {
+  position: relative; isolation: isolate;
+  width: 66px; height: 124px; padding: 12px 8px 10px;
+  display: flex; flex-direction: column; gap: 6px;
 }
-.zm-ask {
-  position: absolute; top: -8px; right: 8px; width: 40px; height: 40px; border-radius: 50%;
+.zm-mini::before {
+  content: ""; position: absolute; inset: 0; border-radius: 16px;
+  background: var(--white); border: 4px solid var(--ink);
+  filter: url(#wax-stroke); z-index: -1;
+}
+.zm-mini-band {
+  position: relative; height: 28px; flex: none; border-radius: 6px; background: var(--p);
+}
+.zm-mini-ask {
+  position: absolute; top: -6px; right: -4px; width: 22px; height: 22px; border-radius: 50%;
   background: var(--sun); display: flex; align-items: center; justify-content: center;
-  font-family: var(--f-display); font-size: 26px; color: var(--ink); z-index: 2;
+  font-family: var(--f-display); font-size: 16px; color: var(--ink); z-index: 2;
 }
-.zm-phone-bar {
-  height: 14px; width: 90px; border-radius: 7px; background: var(--ink-soft); flex: none;
-}
-.zm-tiny-wrap {
-  position: relative; margin-top: auto; align-self: flex-end;
-  padding: 8px 10px 4px;
-}
-.zm-tiny-btn {
-  display: flex; align-items: center; justify-content: center;
-  height: 28px; padding: 0 10px; border-radius: 8px;
-  background: var(--paper-line);
-  font-family: var(--f-body); font-weight: 700; font-size: 20px; color: var(--ink);
+.zm-mini-ln { display: block; height: 6px; border-radius: 3px; background: var(--paper-line); }
+.zm-mini-w60 { width: 60%; }
+.zm-mini-w70 { width: 70%; }
+.zm-mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.zm-mini-cards i { display: block; height: 22px; border-radius: 5px; background: var(--paper-warm); }
+.zm-mini-peach { height: 28px; border-radius: 6px; background: var(--peach); flex: none; }
+.zm-mini-tiny { position: relative; margin-top: auto; align-self: flex-end; }
+.zm-mini-btn {
+  display: block; width: 28px; height: 16px; border-radius: 5px; background: var(--paper-line);
 }
