@@ -56,6 +56,13 @@
           <div class="cover-copy">
             <h1 class="display cover-title">AI가 알아먹는<br /><span class="hl">UI 용어집</span> 3탄</h1>
             <p class="cover-sub">AI한테 설명하다 지친<br />나를 위한 입력 UI 5개</p>
+            <div class="cover-terms">
+              <span class="chip">Dropdown</span>
+              <span class="chip">Toggle</span>
+              <span class="chip">Checkbox</span>
+              <span class="chip">Radio Button</span>
+              <span class="chip">Date Picker</span>
+            </div>
           </div>
         </div>
       </section>
@@ -314,7 +321,6 @@
         </div>
       </footer>
 
-      <div id="wipe" class="clip wipe" data-start="0" data-duration="39" data-track-index="4"></div>
     </div>
 
     <script>
@@ -413,7 +419,7 @@
         tl.fromTo(
           selector,
           { opacity: 0, y: 28 },
-          { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false },
           time,
         );
       }
@@ -437,8 +443,8 @@
       enter("#scene-ending .scene-inner", 34);
       enter("#lt-ending", 34.05);
 
-      tl.fromTo("#news-bar", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0);
-      tl.fromTo("#ticker", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0);
+      tl.fromTo("#news-bar", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, 0);
+      tl.fromTo("#ticker", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, 0);
 
       /* 두 세트가 이어져 있어서 -50%면 한 바퀴입니다. */
       tl.fromTo(
@@ -447,13 +453,6 @@
         { xPercent: -50, duration: 16, ease: "none", repeat: 2 },
         0,
       );
-
-      const cuts = [4, 9, 13, 17, 21, 25, 29, 34];
-      tl.set("#wipe", { yPercent: -100, opacity: 1 }, 0);
-      cuts.forEach((t) => {
-        tl.fromTo("#wipe", { yPercent: -100 }, { yPercent: 0, duration: 0.16, ease: "power2.in" }, t - 0.16);
-        tl.to("#wipe", { yPercent: 100, duration: 0.16, ease: "power2.out" }, t);
-      });
 
       window.__timelines = window.__timelines || {};
       window.__timelines.main = tl;

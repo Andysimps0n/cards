@@ -247,15 +247,6 @@ html, body {
   color: var(--ink-soft);
 }
 
-.wipe {
-  position: absolute;
-  inset: 0;
-  z-index: 8;
-  background: var(--p);
-  pointer-events: none;
-  transform: translateY(-100%);
-}
-
 /* ----- 장면 공통 ----- */
 .scene {
   position: absolute;
@@ -305,6 +296,13 @@ html, body {
   font-weight: 500;
   color: var(--ink-soft);
 }
+.cover-terms {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 920px;
+}
 .cover-blob {
   position: absolute;
   right: -40px;
@@ -338,9 +336,8 @@ html, body {
 .chat-thread {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  flex: 1;
-  min-height: 0;
+  gap: 18px;
+  flex: none;
 }
 .chat-msg { display: flex; align-items: flex-end; gap: 10px; }
 .chat-me { justify-content: flex-end; }
@@ -396,10 +393,10 @@ html, body {
 }
 .chat-mini {
   flex: none;
-  transform: scale(0.2);
+  transform: scale(0.28);
   transform-origin: top left;
-  width: 60px;
-  height: 112px;
+  width: 84px;
+  height: 157px;
 }
 .chat-loop {
   display: flex;
@@ -413,7 +410,7 @@ html, body {
 }
 .chat-loop svg { width: 36px; height: 36px; }
 .chat-punch {
-  margin-top: 8px;
+  margin-top: 22px;
   padding: 16px 28px 18px;
 }
 .chat-punch.card::before { background: var(--paper-warm); border-color: var(--sun-deep); }
@@ -466,8 +463,10 @@ html, body {
   align-items: center;
   justify-content: center;
   min-height: 0;
-  margin: 18px 0 12px;
+  margin: 18px 0 16px;
+  overflow: hidden;
 }
+.term-mock .phone { transform: scale(1.08); }
 .term-tip {
   flex: none;
   padding: 16px 24px 18px;
@@ -647,8 +646,7 @@ html, body {
 }
 .ending-cta .chip { font-size: 30px; padding: 12px 24px 14px; }
 .ending-note {
-  margin-top: auto;
-  padding-top: 16px;
+  margin-top: 28px;
   font-family: var(--f-hand);
   font-weight: 700;
   font-size: 32px;
