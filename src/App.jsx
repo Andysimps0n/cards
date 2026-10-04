@@ -3,11 +3,13 @@ import { Filters } from "./ui/Filters.jsx";
 import { cards as talk01 } from "./posts/ui-talk-01/cards.jsx";
 import { cards as talk02 } from "./posts/ui-talk-02-header-footer/cards.jsx";
 import { cards as talk03 } from "./posts/ui-talk-03-inputs/cards.jsx";
+import { cards as talk05 } from "./posts/ui-talk-05-zones/cards.jsx";
 
 const POSTS = {
   "ui-talk-01": talk01,
   "ui-talk-02-header-footer": talk02,
   "ui-talk-03-inputs": talk03,
+  "ui-talk-05-zones": talk05,
 };
 
 export function App() {
