@@ -28,6 +28,7 @@ export function Cover() {
           <p className="hand hf-cover-agenda-label">오늘의 내용</p>
           <ul className="hf-cover-agenda">
             <li>맨 위에 로고랑 메뉴 버튼 있는 그 줄 (?)</li>
+            <li>메뉴 밑에 홈 {">"} 상의 {">"} 니트 같은 줄 (?)</li>
             <li>맨 밑에 회사 정보 적힌 데 (?)</li>
           </ul>
         </div>

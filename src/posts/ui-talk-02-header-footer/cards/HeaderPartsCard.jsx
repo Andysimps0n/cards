@@ -5,10 +5,10 @@ export function HeaderPartsCard() {
   return (
     <SectionCard
       name="HeaderParts"
-      page="05"
+      page="04"
       layout="wide"
       mock={<HeaderParts />}
-      stage="구역 ③"
+      stage="구역 ②"
       term="Header 속 단골들"
       when="자주 쓰는 기능을 맨 위에 모아 둘 때 이 부품들을 써요."
       items={[

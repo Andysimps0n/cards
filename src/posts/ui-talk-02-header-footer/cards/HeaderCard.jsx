@@ -5,10 +5,10 @@ export function HeaderCard() {
   return (
     <SectionCard
       name="Header"
-      page="04"
+      page="03"
       layout="side"
       mock={<HeaderMock />}
-      stage="구역 ②"
+      stage="구역 ①"
       term="Header"
       pron="[헤더]"
       mean={<>웹페이지 <b>맨 위</b>에 늘 있는 구역이에요.</>}

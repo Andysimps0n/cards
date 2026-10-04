@@ -8,7 +8,7 @@ export function Chat() {
   return (
     <Post name="Chat" pillar="ui" page="02">
       <div className="hf-post-head">
-        <h1 className="display hf-chat-title"><span>이런적이 있었나요?</span></h1>
+        <h1 className="display hf-chat-title"><span>이런 상황이 답답하시죠,,</span></h1>
         <div className="card-head">
           <QuestTag series="talk" showType={false} />
           <div className="hf-chat-pin"><Icon name="map" color="var(--ink-soft)" stroke={5} /></div>
@@ -17,7 +17,7 @@ export function Chat() {
 
       <div className="hf-chat-thread">
         <div className="hf-chat-msg hf-chat-me">
-          <div className="hf-chat-bub">맨 위에 로고랑 메뉴 버튼 있는<br />그 줄 만들어줘.</div>
+          <div className="hf-chat-bub">맨 위에 로고랑 메뉴 버튼 있는<br />그 줄 만들어줘</div>
           <div className="hf-chat-who">나</div>
         </div>
         <div className="hf-chat-msg hf-chat-ai">
@@ -37,6 +37,13 @@ export function Chat() {
             <div className="hf-chat-mini"><Mock kind="modal" /></div>
             <span>(회사 정보를<br />팝업으로 띄워 옴)</span>
           </div>
+        </div>
+        <div className="hf-chat-loop">
+          <svg viewBox="0 0 100 100" fill="none" stroke="var(--p-deep)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" filter="url(#wax-stroke)">
+            <path d="M78 40a30 30 0 1 0 4 22" />
+            <path d="M84 22l-4 20-20-4" />
+          </svg>
+          이걸 여러 번 반복...
         </div>
         <div className="hf-chat-msg hf-chat-me">
           <div className="hf-chat-bub">아니 그게 아니라,,</div>

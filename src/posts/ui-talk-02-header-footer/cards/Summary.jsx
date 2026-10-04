@@ -22,7 +22,7 @@ export function Summary() {
         <Row name="Header" ko="헤더" job="웹페이지 맨 위에 늘 있는 구역이에요." />
         <Row name="GNB" ko="메인 메뉴" job="모든 페이지에 똑같이 들어가는 메인 메뉴예요." />
         <Row name="Sticky Header" ko="스티키 헤더" job="스크롤해도 맨 위에 붙어 따라오는 Header예요." />
-        <Row name="햄버거 메뉴" ko="Hamburger Menu" job="모바일에서 메뉴를 접어둔 줄 세 개 버튼이에요." />
+        <Row name="Breadcrumb" ko="브레드크럼" job="지금 페이지까지 온 길을 보여주는 줄이에요." />
         <Row name="Footer" ko="푸터" job="웹페이지 맨 아래에 늘 있는 구역이에요." />
       </div>
     </Post>

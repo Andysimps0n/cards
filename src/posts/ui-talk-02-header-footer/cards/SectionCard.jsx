@@ -1,5 +1,6 @@
 import { Post } from "../../../ui/Post.jsx";
 import { QuestTag } from "../../../ui/QuestTag.jsx";
+import { Icon } from "../../../ui/Icon.jsx";
 
 /* 03~07장이 같이 쓰는 레이아웃. 문구는 각 카드 파일에서 props로 넘깁니다. */
 export function SectionCard({
@@ -13,6 +14,8 @@ export function SectionCard({
   mean,
   when,
   items,
+  before,
+  after,
   tipLabel,
   tip,
   fn,
@@ -38,6 +41,25 @@ export function SectionCard({
               </li>
             ))}
           </ul>
+        )}
+        {(before || after) && (
+          <div className="hf-talk">
+            <div className="hf-before">
+              <div className="hf-lab">
+                <span className="hf-mark"><Icon name="x" color="var(--ink-soft)" stroke={10} /></span>
+                잘못된 설명
+              </div>
+              <p>{before}</p>
+            </div>
+            <div className="hf-down"><Icon name="arrow" color="var(--p-deep)" stroke={8} /></div>
+            <div className="card hf-after">
+              <div className="hf-lab">
+                <span className="hf-mark"><Icon name="star" color="var(--sun-deep)" stroke={8} /></span>
+                용어를 알고 난 후
+              </div>
+              <p>{after}</p>
+            </div>
+          </div>
         )}
       </div>
       {tip && (
