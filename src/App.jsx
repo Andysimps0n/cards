@@ -5,6 +5,7 @@ import { cards as talk02 } from "./posts/ui-talk-02-header-footer/cards.jsx";
 import { cards as talk03 } from "./posts/ui-talk-03-inputs/cards.jsx";
 import { cards as talk05 } from "./posts/ui-talk-05-zones/cards.jsx";
 import { cards as talk04 } from "./posts/ui-talk-04-swipe-expand/cards.jsx";
+import { cards as talk06 } from "./posts/ui-talk-06-search-filter/cards.jsx";
 
 const POSTS = {
   "ui-talk-01": talk01,
@@ -12,6 +13,7 @@ const POSTS = {
   "ui-talk-03-inputs": talk03,
   "ui-talk-05-zones": talk05,
   "ui-talk-04-swipe-expand": talk04,
+  "ui-talk-06-search-filter": talk06,
 };
 
 export function App() {
