@@ -3,15 +3,17 @@ import { Filters } from "./ui/Filters.jsx";
 import { cards as talk01 } from "./posts/ui-talk-01/cards.jsx";
 import { cards as talk02 } from "./posts/ui-talk-02/cards.jsx";
 import { cards as talk03 } from "./posts/ui-talk-03/cards.jsx";
-import { cards as talk05 } from "./posts/ui-talk-05/cards.jsx";
 import { cards as talk04 } from "./posts/ui-talk-04/cards.jsx";
+import { cards as talk05 } from "./posts/ui-talk-05/cards.jsx";
+import { cards as talk06 } from "./posts/ui-talk-06/cards.jsx";
 
 const POSTS = {
   "ui-talk-01": talk01,
   "ui-talk-02": talk02,
   "ui-talk-03": talk03,
-  "ui-talk-05": talk05,
   "ui-talk-04": talk04,
+  "ui-talk-05": talk05,
+  "ui-talk-06": talk06,
 };
 
 export function App() {

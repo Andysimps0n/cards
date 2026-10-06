@@ -1,11 +1,11 @@
 import { Post } from "../../../ui/Post.jsx";
 
-const LOOT = ["Hero Section", "CTA", "Card Grid", "Banner", "FAQ Section"];
+const LOOT = ["Search Bar", "Filter", "Sort", "Chip", "Autocomplete"];
 
 export function Ending() {
   return (
     <Post name="Ending" pillar="ui" page="09">
-      <svg className="layer zn-ending-doodle" viewBox="0 0 140 140" aria-hidden="true">
+      <svg className="layer sf-ending-doodle" viewBox="0 0 140 140" aria-hidden="true">
         <g transform="rotate(-6 70 74)">
           <rect x="38" y="28" width="78" height="92" rx="10" fill="var(--white)" filter="url(#wax)" />
           <rect x="38" y="28" width="78" height="92" rx="10" fill="none" stroke="var(--p-deep)" strokeWidth="6" filter="url(#wax-stroke)" />
@@ -17,10 +17,10 @@ export function Ending() {
           <path d="M62 58 l14 16 28-30" fill="none" stroke="var(--sun-deep)" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" filter="url(#wax-stroke)" />
         </g>
       </svg>
-      <div className="layer hand zn-ending-note">다음 편에서 만나요!</div>
+      <div className="layer hand sf-ending-note">다음 편에서 만나요!</div>
 
-      <div className="zn-ending-clear">
-        <div className="zn-ending-stamp">
+      <div className="sf-ending-clear">
+        <div className="sf-ending-stamp">
           <svg viewBox="0 0 210 210" width="230" height="230">
             <circle cx="105" cy="105" r="92" fill="var(--sun)" filter="url(#wax)" />
             <circle cx="105" cy="105" r="78" fill="none" stroke="var(--sun-deep)" strokeWidth="5" filter="url(#wax-stroke)" />
@@ -28,15 +28,15 @@ export function Ending() {
           <span>오늘 배운<br />단어 5개</span>
         </div>
         <div>
-          <h1 className="display zn-ending-title">오늘의 정리</h1>
-          <p className="zn-ending-sub">저장해두고<br />AI한테 써먹어보세요</p>
+          <h1 className="display sf-ending-title">오늘의 정리</h1>
+          <p className="sf-ending-sub">저장해두고<br />AI한테 써먹어보세요</p>
         </div>
       </div>
 
-      <div className="zn-ending-loot">
+      <div className="sf-ending-loot">
         <h3>
           ✦ 이제 이렇게 말해요
-          <svg className="zn-ending-tick" viewBox="0 0 48 48" aria-hidden="true">
+          <svg className="sf-ending-tick" viewBox="0 0 48 48" aria-hidden="true">
             <path d="M8 26 l10 12 22-24" fill="none" stroke="var(--p-deep)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" filter="url(#wax-stroke)" />
           </svg>
         </h3>
@@ -45,9 +45,9 @@ export function Ending() {
         </ul>
       </div>
 
-      <div className="zn-ending-next">
+      <div className="sf-ending-next">
         <div className="card warm">
-          <svg className="zn-ending-pencil" viewBox="0 0 84 84" aria-hidden="true">
+          <svg className="sf-ending-pencil" viewBox="0 0 84 84" aria-hidden="true">
             <g transform="rotate(-35 42 42)">
               <rect x="32" y="14" width="20" height="12" rx="3" fill="var(--p)" filter="url(#wax)" />
               <rect x="32" y="24" width="20" height="36" fill="var(--sun)" filter="url(#wax)" />
@@ -56,13 +56,12 @@ export function Ending() {
               <path d="M32 24 h20" stroke="var(--p-deep)" strokeWidth="4" filter="url(#wax-stroke)" />
             </g>
           </svg>
-          <div className="sx-ending-label">다음 편</div>
-          <div className="sx-ending-next-title">검색하고 필터링하는 UI 편</div>
-          <div className="sx-ending-desc">Search Bar, Filter, Sort처럼<br />찾고 거르고 줄 세우는 UI</div>
+          <div className="sf-ending-label">다음 편</div>
+          <div className="sf-ending-next-title">?? 편</div>
         </div>
       </div>
 
-      <div className="zn-ending-cta">
+      <div className="sf-ending-cta">
         <span className="chip">🔖 저장하고 써먹기</span>
         <span className="chip alt">👀 팔로우하고 다음 편 보기</span>
       </div>
