@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 import { Filters } from "./ui/Filters.jsx";
 import { cards as talk01 } from "./posts/ui-talk-01/cards.jsx";
-import { cards as talk02 } from "./posts/ui-talk-02-header-footer/cards.jsx";
-import { cards as talk03 } from "./posts/ui-talk-03-inputs/cards.jsx";
-import { cards as talk05 } from "./posts/ui-talk-05-zones/cards.jsx";
-import { cards as talk04 } from "./posts/ui-talk-04-swipe-expand/cards.jsx";
+import { cards as talk02 } from "./posts/ui-talk-02/cards.jsx";
+import { cards as talk03 } from "./posts/ui-talk-03/cards.jsx";
+import { cards as talk05 } from "./posts/ui-talk-05/cards.jsx";
+import { cards as talk04 } from "./posts/ui-talk-04/cards.jsx";
 
 const POSTS = {
   "ui-talk-01": talk01,
-  "ui-talk-02-header-footer": talk02,
-  "ui-talk-03-inputs": talk03,
-  "ui-talk-05-zones": talk05,
-  "ui-talk-04-swipe-expand": talk04,
+  "ui-talk-02": talk02,
+  "ui-talk-03": talk03,
+  "ui-talk-05": talk05,
+  "ui-talk-04": talk04,
 };
 
 export function App() {
