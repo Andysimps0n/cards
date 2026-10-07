@@ -57,7 +57,9 @@ export function Ending() {
             </g>
           </svg>
           <div className="sf-ending-label">다음 편</div>
-          <div className="sf-ending-next-title">?? 편</div>
+          <div className="sf-ending-next-title">단계와 길을 보여주는 UI 편</div>
+          <div className="sx-ending-desc">Stepper, Sidebar, Back Button</div>
+
         </div>
       </div>
 

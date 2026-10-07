@@ -56,9 +56,9 @@ export function Ending() {
               <path d="M32 24 h20" stroke="var(--p-deep)" strokeWidth="4" filter="url(#wax-stroke)" />
             </g>
           </svg>
-          <div className="zn-ending-label">다음 편</div>
-          <div className="zn-ending-next-title">검색하고 거르는 UI 편</div>
-          <div className="zn-ending-desc">Search Bar, Filter, Sort처럼<br />찾고 거르고 줄 세우는 UI</div>
+          <div className="sx-ending-label">다음 편</div>
+          <div className="sx-ending-next-title">검색하고 필터링하는 UI 편</div>
+          <div className="sx-ending-desc">Search Bar, Filter, Sort처럼<br />찾고 거르고 줄 세우는 UI</div>
         </div>
       </div>
 
