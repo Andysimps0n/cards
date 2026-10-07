@@ -142,6 +142,7 @@
 .zn-ending-next .card { padding: 40px 48px; }
 .zn-ending-label { font-family: var(--f-hand); font-weight: 700; font-size: 34px; color: var(--p-deep); }
 .zn-ending-next-title { font-family: var(--f-display); font-size: 56px; margin-top: 10px; line-height: 1.25; }
+.zn-ending-desc { margin-top: 10px; font-size: 32px; color: var(--ink-soft); font-weight: 500; line-height: 1.45; }
 .zn-ending-pencil { position: absolute; right: 40px; top: 36px; width: 84px; height: 84px; }
 .zn-ending-cta {
   position: absolute !important; left: var(--m-x); bottom: 150px;

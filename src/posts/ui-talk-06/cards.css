@@ -20,7 +20,7 @@
 .sf-cover-dest { right: 96px; bottom: 170px; width: 130px; height: 130px; }
 .sf-cover-spark { width: 56px; height: 56px; }
 
-/* ----- 02 chat (4탄 구조, 반복 표시 없음) ----- */
+/* ----- 02 chat (4탄 구조 + #01 반복 표시) ----- */
 .sf-post-head { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .sf-post-head .sf-chat-title { flex: 1; font-size: 72px; line-height: 1.2; }
 .sf-chat-title span { position: relative; isolation: isolate; display: inline-block; max-width: 100%; }
@@ -30,7 +30,7 @@
 }
 .sf-post-head .card-head { flex: none; }
 .sf-chat-pin { width: 64px; height: 64px; }
-.sf-chat-thread { margin: 30px; display: flex; flex-direction: column; gap: 50px; }
+.sf-chat-thread { margin-top: 16px; display: flex; flex-direction: column; gap: 40px; }
 .sf-chat-msg { display: flex; align-items: flex-end; gap: 12px; }
 .sf-chat-me { justify-content: flex-end; }
 .sf-chat-who {
@@ -53,6 +53,11 @@
   color: var(--ink-soft); font-weight: 500; font-size: 28px;
 }
 .sf-chat-mini { flex: none; transform: scale(.22); transform-origin: top left; width: 66px; height: 124px; }
+.sf-chat-loop {
+  display: flex; align-items: center; gap: 8px; align-self: flex-end;
+  font-family: var(--f-hand); font-weight: 700; font-size: 32px; color: var(--ink-soft);
+}
+.sf-chat-loop svg { width: 40px; height: 40px; }
 .sf-chat-punch { margin-top: 12px; }
 .sf-chat-punch.card { padding: 16px 32px 18px; }
 .sf-chat-punch.card::before { background: var(--paper-warm); border-color: var(--sun-deep); }

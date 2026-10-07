@@ -37,6 +37,13 @@ export function Chat() {
             <span>(최신순으로 줄만<br />바꿔 옴)</span>
           </div>
         </div>
+        <div className="sf-chat-loop">
+          <svg viewBox="0 0 100 100" fill="none" stroke="var(--p-deep)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" filter="url(#wax-stroke)">
+            <path d="M78 40a30 30 0 1 0 4 22" />
+            <path d="M84 22l-4 20-20-4" />
+          </svg>
+          <span>이걸 여러 번 반복...</span>
+        </div>
         <div className="sf-chat-msg sf-chat-me">
           <div className="sf-chat-bub">아니 그게 아니라,,</div>
           <div className="sf-chat-who">나</div>

@@ -30,7 +30,7 @@
 | # | 역할 | 컴포넌트 (`cards/`) | 복사 원본 |
 |---|---|---|---|
 | 01 | 커버 | `Cover.jsx` | 4탄 `Cover.jsx` (= #01 두 줄 부제) |
-| 02 | 이런 상황이 답답하시죠 (채팅) | `Chat.jsx` | 4탄 `Chat.jsx` (나→AI 두 번 + `아니 그게 아니라,,`, 반복 표시 없음) |
+| 02 | 이런 상황이 답답하시죠 (채팅) | `Chat.jsx` | 4탄 `Chat.jsx` (나→AI 두 번 + 반복 + `아니 그게 아니라,,`) |
 | 03 | UI 용어 ① Search Bar | `SearchBarCard.jsx` → `TermCard.jsx` | 4탄 `TermCard.jsx` |
 | 04 | UI 용어 ② Filter | `FilterCard.jsx` → `TermCard` | 〃 |
 | 05 | UI 용어 ③ Sort | `SortCard.jsx` → `TermCard` | 〃 |
@@ -207,7 +207,7 @@ import "./posts/ui-talk-06/cards.css";
 4탄 파일을 복사해서 `sx-` → `sf-`로 바꾸고 문구·목업만 5장대로 교체. 크기·배치는 그대로.
 
 - **Cover**: #01·4탄처럼 `p.sf-cover-sub` 두 줄. 2탄 목록 형식(`cover-agenda`)은 쓰지 않아요
-- **Chat**: 제목 `이런 상황이 답답하시죠,,`, 나→AI 두 번 + `아니 그게 아니라,,` (반복 표시 없음). 대화 묶음은 `.sf-chat-thread { margin: 30px; display: flex; flex-direction: column; gap: 50px; }`
+- **Chat**: 제목 `이런 상황이 답답하시죠,,`, 나→AI 두 번 + `sf-chat-loop` 반복 표시 + `아니 그게 아니라,,`
 - **Ending**: 다음 편 제목 `?? 편` (주제 미정, 자리표시). 설명 줄은 렌더링하지 않음
 
 ---
@@ -296,14 +296,15 @@ import "./posts/ui-talk-06/cards.css";
 | AI 1 | 미니 `<PickListMock />` + `(누르면 펼쳐지는<br>목록을 만들어 옴)` |
 | 나 2 | `가격대랑 색상으로<br>맞는 것만 남기게 해줘` |
 | AI 2 | 미니 `<SortMock />` + `(최신순으로 줄만<br>바꿔 옴)` |
+| 반복 | `이걸 여러 번 반복...` (반복 화살표 SVG) |
 | 나 3 (마지막) | `아니 그게 아니라,,` |
 | 결론 카드 | `{HL("Search Bar, Filter")}라고<br>한 마디면 끝났을 일` |
 
-- 순서: 나 1 → AI 1 → 나 2 → AI 2 → 나 3 (시리즈 규칙)
+- 순서: 나 1 → AI 1 → 나 2 → AI 2 → 반복 → 나 3 (시리즈 규칙)
 - 말풍선 글자는 #01·4탄 구현처럼 **따옴표 없이** 써요
 - AI 쪽은 실제 대사가 아니라 괄호 안 장면 설명
 - **주석 없음**: 실제/예시 장면 여부 주석을 넣지 않아요 (시리즈 규칙)
-- 크기는 #01·4탄 값 그대로 (제목 72px, 말풍선 30px, AI 말풍선 28px, 원 56px, 미니 목업 `scale(.22)` 66×124, 결론 카드 44px)
+- 크기는 #01·4탄 값 그대로 (제목 72px, 말풍선 30px, AI 말풍선 28px, 원 56px, 미니 목업 `scale(.22)` 66×124, 반복 32px, 결론 카드 44px)
 - 형광펜: **"Search Bar, Filter"**
 - 완료 기준
   - 말풍선이 모두 2줄 이하, "나" 원과 겹치지 않음
